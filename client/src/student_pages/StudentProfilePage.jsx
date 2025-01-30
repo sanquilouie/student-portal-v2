@@ -52,37 +52,42 @@ const StudentProfilePage = () => {
                 </div>
             </div>
         </div>
-            <div className="mb-5 pt-3">
-                <label className="mb-5 block text-base font-semibold text-[#07074D] sm:text-xl">
-                    Address Details
-                </label>
-                <div className="-mx-3 flex flex-wrap">
-                    <div className="w-full px-3 sm:w-1/2">
-                        <div className="mb-5">
-                            <input type="text" name="area" id="area" placeholder="Enter area"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                        </div>
-                    </div>
-                    <div className="w-full px-3 sm:w-1/2">
-                        <div className="mb-5">
-                            <input type="text" name="city" id="city" placeholder="Enter city"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                        </div>
-                    </div>
-                    <div className="w-full px-3 sm:w-1/2">
-                        <div className="mb-5">
-                            <input type="text" name="state" id="state" placeholder="Enter state"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                        </div>
-                    </div>
-                    <div className="w-full px-3 sm:w-1/2">
-                        <div className="mb-5">
-                            <input type="text" name="post-code" id="post-code" placeholder="Post Code"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                        </div>
-                    </div>
+        <div className="mb-5">
+            <label htmlFor="address" className="mb-3 block text-base font-medium text-[#07074D]">
+                 Full Address
+            </label>
+            <input type="text" name="address" id="address" placeholder="Full Address"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+        </div>
+        <div className="-mx-3 flex flex-wrap">
+            <div className="w-full px-3 sm:w-1/3">
+                <div className="mb-5">
+                    <label htmlFor="course" className="mb-3 block text-base font-medium text-[#07074D]">
+                        Course
+                    </label>
+                    <input type="text" name="course" id="course" placeholder="Enter your course"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                 </div>
             </div>
+            <div className="w-full px-3 sm:w-1/3">
+                <div className="mb-5">
+                    <label htmlFor="year" className="mb-3 block text-base font-medium text-[#07074D]">
+                        Year
+                    </label>
+                    <input type="text" name="year" id="year" placeholder="Enter your year"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                </div>
+            </div>
+            <div className="w-full px-3 sm:w-1/3">
+                <div className="mb-5">
+                    <label htmlFor="section" className="mb-3 block text-base font-medium text-[#07074D]">
+                        Section
+                    </label>
+                    <input type="text" name="section" id="section" placeholder="Enter your section"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                </div>
+            </div>
+        </div>
         </form>
     </div>
 </div>
