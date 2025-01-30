@@ -6,7 +6,7 @@ import StudentProfilePage from './student_pages/StudentProfilePage'
 import GradesPage from './student_pages/GradesPage'
 import BillingPage from './student_pages/BillingPage'
 import SchedulePage from './student_pages/SchedulePage'
-import Layout from "./Layout";
+import Layout from "./components/Layout";
 
 function App() {
 
