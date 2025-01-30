@@ -6,22 +6,29 @@ import StudentProfilePage from './student_pages/StudentProfilePage'
 import GradesPage from './student_pages/GradesPage'
 import BillingPage from './student_pages/BillingPage'
 import SchedulePage from './student_pages/SchedulePage'
+import Layout from "./Layout";
 
 function App() {
 
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<LoginPage />}></Route>
-      <Route path="/home" element={<HomePage />}></Route>
-      <Route path="/studentprofile" element={<StudentProfilePage />}></Route>
-      <Route path="/studentgrades" element={<GradesPage />}></Route>
-      <Route path="/studentbilling" element={<BillingPage />}></Route>
-      <Route path="/studentchedule" element={<SchedulePage />}></Route>
-    </Routes>
+      <Routes>
+        {/* Routes WITHOUT Navbar */}
+        <Route path="/" element={<LoginPage />} />
+
+        {/* Routes WITH Navbar (Wrapped in Layout) */}
+        <Route element={<Layout />}>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/studentprofile" element={<StudentProfilePage />} />
+          <Route path="/studentgrades" element={<GradesPage />} />
+          <Route path="/studentbilling" element={<BillingPage />} />
+          <Route path="/studentschedule" element={<SchedulePage />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
       
   )
 }
 
 export default App
+

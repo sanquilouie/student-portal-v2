@@ -1,7 +1,7 @@
 const StudentProfilePage = () => {
   return (
     <div className="flex items-center justify-center p-12">
-    <div className="mx-auto w-full bg-white">
+    <div className="mx-auto w-4/5">
         <form>
         <div className="-mx-3 flex flex-wrap">
             <div className="w-full px-3 sm:w-1/2">
