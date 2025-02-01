@@ -1,9 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import bgImage from './assets/images/bg-image.jpg';
 import schoolLogo from './assets/images/school-logo.png';
 import { useState, useEffect } from "react";
+import axios from 'axios'
 
 const LoginPage = () => {
+  const [studentid, setStudentID] = useState()
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+      e.preventDefault()
+      axios.post('http://localhost:3001/login', {studentid})
+          .then(result => {
+              console.log(result)
+              if(result.data === "Success"){
+                  navigate('/home')
+              }   
+          })
+          .catch(err=> console.log(err)) 
+  }
+
   const [time, setTime] = useState('');
   const [date, setDate] = useState('');
 
@@ -56,13 +72,15 @@ const LoginPage = () => {
             <span className="text-black text-3xl font-semibold ml-auto">{date}</span>
           </div>
         </div>
-        <form onSubmit={handleSubmit}>
-        <div className="w-1/2 flex flex-col justify-center items-center">
+        <form onSubmit={handleSubmit} className="w-1/2 flex justify-center">
+        <div className="w-full flex flex-col justify-center items-center">
             <img src={schoolLogo} alt="Logo" className="w-60 h-60 mb-6"/>
-            <input type="text" className="w-2/4 p-2 mb-4 border rounded" placeholder="Enter Student Number"/>
-            <Link to="/home" className="w-2/4 p-2 bg-blue-500 text-white rounded text-center">
+            <input type="text" className="w-2/4 p-2 mb-4 border rounded" placeholder="Enter Student Number"
+            onChange={(e) => setStudentID(e.target.value)}
+            />
+            <button type='submit' className="w-2/4 p-2 bg-blue-500 text-white rounded text-center">
                 Sign In
-            </Link>
+            </button>
         </div>
         </form>
       </div>

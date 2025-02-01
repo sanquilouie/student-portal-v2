@@ -15,6 +15,22 @@ app.post('/students', (req, res) => {
     .catch(err => res.json(err))
 })
 
+app.post('/login', (req, res) => {
+    const {studentid} = req.body;
+    StudentModel.findOne({studentid: studentid})
+    .then(user => {
+        if(user){
+            if(user.studentid === studentid){
+                res.json('Success')
+            }else{
+                res.json('Incorrect Student ID')
+            }
+        }else{
+            res.json('No record existed')
+        }
+    })
+})
+
 app.listen(3001, () => {
     console.log("Server is running")
 })
