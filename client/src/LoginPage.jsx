@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import bgImage from './assets/images/bg-image.jpg';
 import schoolLogo from './assets/images/school-logo.png';
 import { useState, useEffect } from "react";
@@ -10,10 +10,11 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
       e.preventDefault()
-      axios.post('http://localhost:3001/login', {studentid})
+      axios.post('http://localhost:3001/login', {studentid}, { withCredentials: true })
           .then(result => {
               console.log(result)
-              if(result.data === "Success"){
+              console.log(result.data)
+              if(result.data.status === "Success"){
                   navigate('/home')
               }   
           })
