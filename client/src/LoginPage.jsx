@@ -56,7 +56,7 @@ const LoginPage = () => {
             <span className="text-black text-3xl font-semibold ml-auto">{date}</span>
           </div>
         </div>
-
+        <form onSubmit={handleSubmit}>
         <div className="w-1/2 flex flex-col justify-center items-center">
             <img src={schoolLogo} alt="Logo" className="w-60 h-60 mb-6"/>
             <input type="text" className="w-2/4 p-2 mb-4 border rounded" placeholder="Enter Student Number"/>
@@ -64,6 +64,7 @@ const LoginPage = () => {
                 Sign In
             </Link>
         </div>
+        </form>
       </div>
     </div>
   );
