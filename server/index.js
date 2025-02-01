@@ -44,7 +44,7 @@ app.post("/login", (req, res) => {
 });
 
 
-app.get("/home", (req, res) => {
+app.get("/navbar", (req, res) => {
     if (req.session.user) {
         const { studentid } = req.session.user;
         StudentModel.findOne({ studentid: studentid })
@@ -54,6 +54,35 @@ app.get("/home", (req, res) => {
                         status: "Success",
                         fname: user.fname,
                         lname: user.lname,
+                    });
+                } else {
+                    res.json({ status: "No record found for studentid" });
+                }
+            })
+            .catch((err) => res.status(500).json({ error: err.message }));
+    } else {
+        res.json({ status: "No user logged in" });
+    }
+});
+
+app.get("/studentprofile", (req, res) => {
+    if (req.session.user) {
+        const { studentid } = req.session.user;
+        StudentModel.findOne({ studentid: studentid })
+            .then((user) => {
+                if (user) {
+                    res.json({
+                        status: "Success",
+                        studentid: user.studentid,
+                        fname: user.fname,
+                        lname: user.lname,
+                        phone: user.phone,
+                        emailadd: user.emailadd,
+                        birthday: user.birthday,
+                        address: user.address,
+                        course: user.course,
+                        year: user.year,
+                        section: user.section
                     });
                 } else {
                     res.json({ status: "No record found for studentid" });

@@ -23,26 +23,25 @@ export default function Navbar() {
     return () => clearInterval(interval); 
   }, []);
 
-  const [userData, setUserData] = useState(null); // Track user data
-  const [loading, setLoading] = useState(true);   // Track loading state
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch user data from /home endpoint
     axios
-      .get('http://localhost:3001/home', { withCredentials: true })
+      .get('http://localhost:3001/navbar', { withCredentials: true })
       .then((response) => {
-        // Update user data and set loading to false
+        
         setUserData(response.data);
-        setLoading(false);  // Stop the loading indicator
+        setLoading(false);  
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        setLoading(false);  // Stop the loading even if there's an error
+        setLoading(false);  
       });
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;  // Show loading if data is still being fetched
+    return <div>Loading...</div>;  
   }
 
   return (
