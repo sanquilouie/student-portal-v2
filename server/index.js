@@ -27,6 +27,8 @@ app.post('/students', (req, res) => {
     .catch(err => res.json(err))
 })
 
+//***Catch-all routes***
+
 app.post("/login", (req, res) => {
     const { studentid } = req.body;
     StudentModel.findOne({ studentid: studentid })
@@ -81,6 +83,26 @@ app.get("/navbar", (req, res) => {
     }
 });
 
+app.get("/session", (req, res) => {
+    if (req.session.user) {
+        res.json({ authenticated: true, user: req.session.user })
+    } else {
+        res.json({ authenticated: false })
+    }
+})
+
+app.post("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ message: "Failed to log out" });
+        }
+        res.json({ message: "Logged out" });
+    });
+});
+
+
+//***Route Handlers for STUDENT PAGES***
+
 app.get("/studentprofile", (req, res) => {
     if (req.session.user) {
         const { studentid } = req.session.user;
@@ -112,22 +134,7 @@ app.get("/studentprofile", (req, res) => {
 
 
 
-app.get("/session", (req, res) => {
-    if (req.session.user) {
-        res.json({ authenticated: true, user: req.session.user })
-    } else {
-        res.json({ authenticated: false })
-    }
-})
 
-app.post("/logout", (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return res.status(500).json({ message: "Failed to log out" });
-        }
-        res.json({ message: "Logged out" });
-    });
-});
 
 app.listen(3001, () => {
     console.log("Server is running")

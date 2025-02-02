@@ -2,10 +2,10 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LoginPage from './LoginPage'
 import HomePage from './HomePage'
-import StudentProfilePage from './student_pages/StudentProfilePage'
-import GradesPage from './student_pages/GradesPage'
-import BillingPage from './student_pages/BillingPage'
-import SchedulePage from './student_pages/SchedulePage'
+import StudentProfilePage from './pages/student_pages/StudentProfilePage'
+import GradesPage from './pages/student_pages/GradesPage'
+import BillingPage from './pages/student_pages/BillingPage'
+import SchedulePage from './pages/student_pages/SchedulePage'
 import Layout from "./components/Layout";
 import UserRegistrationPage from "./UserRegistrationPage"
 

@@ -122,7 +122,7 @@ const LoginPage = () => {
               
                       {/* Buttons */}
                       <div className="flex justify-center gap-4">
-                          <button className="flex-1 bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300" onClick={handleSubmit}>
+                          <button className="flex-1 bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300" onClick={handleSubmit}>
                               Log In
                           </button>
                           <button className="flex-1 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">
