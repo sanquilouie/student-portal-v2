@@ -1,9 +1,11 @@
 const express = require("express")
 const mongoose = require('mongoose')
 const cors = require("cors")
-const session = require("express-session");  // Import session
-const MongoStore = require("connect-mongo"); // Import connect-mongo
-const StudentModel = require('./models/StudentUsers')
+const session = require("express-session"); 
+const bcrypt = require('bcryptjs');
+const MongoStore = require("connect-mongo");
+const StudentModel = require('./models/StudentUsers');
+const UserModel = require('./models/Users');
 
 const app = express()
 app.use(express.json())
@@ -21,11 +23,29 @@ app.use(
     })
 )
 
+//***Registration routes***
 app.post('/students', (req, res) => {
     StudentModel.create(req.body)
     .then(students => res.json(students))
     .catch(err => res.json(err))
 })
+
+app.post('/users', (req, res) => {
+    const { userid, password, role } = req.body;
+    bcrypt.hash(password, 10, (err, hashedPassword) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error hashing password' });
+        }
+        const userData = {
+            userid,
+            password: hashedPassword,
+            role
+        };
+        UserModel.create(userData)
+            .then(users => res.json(users))
+            .catch(err => res.json(err));
+    });
+});
 
 //***Catch-all routes***
 

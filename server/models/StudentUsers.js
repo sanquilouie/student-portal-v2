@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const EmployeeSchema = new mongoose.Schema({
+const StudentsSchema = new mongoose.Schema({
     studentid: String,
     fname: String,
     lname: String,
@@ -13,5 +13,5 @@ const EmployeeSchema = new mongoose.Schema({
     section: String
 })
 
-const StudentModel = mongoose.model("students", EmployeeSchema)
+const StudentModel = mongoose.model("students", StudentsSchema)
 module.exports = StudentModel

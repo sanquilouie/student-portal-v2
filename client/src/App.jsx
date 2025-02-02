@@ -7,7 +7,8 @@ import GradesPage from './pages/student_pages/GradesPage'
 import BillingPage from './pages/student_pages/BillingPage'
 import SchedulePage from './pages/student_pages/SchedulePage'
 import Layout from "./components/Layout";
-import UserRegistrationPage from "./UserRegistrationPage"
+import StudentRegistrationPage from "./StudentRegistrationPage"
+import UserRegistrationPage from './UserRegistrationPage'
 
 function App() {
 
@@ -21,8 +22,9 @@ function App() {
           <Route path="/studentgrades" element={<GradesPage />} />
           <Route path="/studentbilling" element={<BillingPage />} />
           <Route path="/studentschedule" element={<SchedulePage />} />
-          <Route path="/userregistration" element={<UserRegistrationPage />} />
         </Route>
+        <Route path="/studentregistration" element={<StudentRegistrationPage />} />
+        <Route path="/userregistration" element={<UserRegistrationPage />} />
       </Routes>
     </BrowserRouter>
       
