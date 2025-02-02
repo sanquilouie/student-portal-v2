@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import bgImage from './assets/images/bg-image.jpg';
-import schoolLogo from './assets/images/school-logo.png';
+import bgImage from '../../assets/images/bg-image.jpg';
+import schoolLogo from '../../assets/images/school-logo.png';
 import { useState, useEffect } from "react";
 import { AlertTriangle } from 'lucide-react';
 import axios from 'axios';
@@ -131,9 +131,6 @@ const LoginPage = () => {
                       </div>
                   </div>
               </div>
-              
-          
-          
           )}
         </div>
         </form>
