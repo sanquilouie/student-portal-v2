@@ -43,6 +43,22 @@ app.post("/login", (req, res) => {
         .catch((err) => res.status(500).json({ error: err.message }));
 });
 
+app.post("/prompt", (req, res) => {
+    const { studentid } = req.body;
+    StudentModel.findOne({ studentid: studentid })
+        .then((user) => {
+            if (user) {
+                res.json({
+                    status: "Success",
+                    fname: user.fname,
+                    lname: user.lname,
+                });
+            } else {
+                res.json({ status: "No record existed" });
+            }
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
 
 app.get("/navbar", (req, res) => {
     if (req.session.user) {
@@ -105,9 +121,13 @@ app.get("/session", (req, res) => {
 })
 
 app.post("/logout", (req, res) => {
-    req.session.destroy()
-    res.json("Logged out")
-})
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ message: "Failed to log out" });
+        }
+        res.json({ message: "Logged out" });
+    });
+});
 
 app.listen(3001, () => {
     console.log("Server is running")
