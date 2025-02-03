@@ -48,40 +48,6 @@ app.post('/users', (req, res) => {
 });
 
 //***Catch-all routes***
-
-app.post("/login", (req, res) => {
-    const { studentid } = req.body;
-    StudentModel.findOne({ studentid: studentid })
-        .then((user) => {
-            if (user) {
-                req.session.user = { studentid: user.studentid };
-                req.session.save(() => {
-                    res.json({ status: "Success", user: req.session.user });
-                });
-            } else {
-                res.json({ status: "No record existed" });
-            }
-        })
-        .catch((err) => res.status(500).json({ error: err.message }));
-});
-
-app.post("/prompt", (req, res) => {
-    const { studentid } = req.body;
-    StudentModel.findOne({ studentid: studentid })
-        .then((user) => {
-            if (user) {
-                res.json({
-                    status: "Success",
-                    fname: user.fname,
-                    lname: user.lname,
-                });
-            } else {
-                res.json({ status: "No record existed" });
-            }
-        })
-        .catch((err) => res.status(500).json({ error: err.message }));
-});
-
 app.get("/navbar", (req, res) => {
     if (req.session.user) {
         const { studentid } = req.session.user;
@@ -123,6 +89,39 @@ app.post("/logout", (req, res) => {
 
 //***Route Handlers for STUDENT PAGES***
 
+app.post("/login", (req, res) => {
+    const { studentid } = req.body;
+    StudentModel.findOne({ studentid: studentid })
+        .then((user) => {
+            if (user) {
+                req.session.user = { studentid: user.studentid };
+                req.session.save(() => {
+                    res.json({ status: "Success", user: req.session.user });
+                });
+            } else {
+                res.json({ status: "No record existed" });
+            }
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+app.post("/prompt", (req, res) => {
+    const { studentid } = req.body;
+    StudentModel.findOne({ studentid: studentid })
+        .then((user) => {
+            if (user) {
+                res.json({
+                    status: "Success",
+                    fname: user.fname,
+                    lname: user.lname,
+                });
+            } else {
+                res.json({ status: "No record existed" });
+            }
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
 app.get("/studentprofile", (req, res) => {
     if (req.session.user) {
         const { studentid } = req.session.user;
@@ -152,9 +151,101 @@ app.get("/studentprofile", (req, res) => {
     }
 });
 
+//***Route Handlers for FACULTY PAGES***
+app.post("/faculty_login", (req, res) => {
+    const { userid, password } = req.body;
 
+    UserModel.findOne({ userid })
+        .then((user) => {
+            if (!user) {
+                return res.json({ status: "No record existed" });
+            }
 
+            if (user.role !== "Faculty") {
+                return res.json({ status: "Access denied" });
+            }
 
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if (err) {
+                    return res.status(500).json({ error: "Error comparing passwords" });
+                }
+
+                if (isMatch) {
+                    req.session.user = { userid: user.userid };
+                    req.session.save(() => {
+                        res.json({ status: "Success", user: req.session.user });
+                    });
+                } else {
+                    res.json({ status: "Invalid password" });
+                }
+            });
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+//***Route Handlers for CASHIER PAGES***
+app.post("/cashier_login", (req, res) => {
+    const { userid, password } = req.body;
+
+    UserModel.findOne({ userid })
+        .then((user) => {
+            if (!user) {
+                return res.json({ status: "No record existed" });
+            }
+
+            if (user.role !== "Cashier") {
+                return res.json({ status: "Access denied" });
+            }
+
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if (err) {
+                    return res.status(500).json({ error: "Error comparing passwords" });
+                }
+
+                if (isMatch) {
+                    req.session.user = { userid: user.userid };
+                    req.session.save(() => {
+                        res.json({ status: "Success", user: req.session.user });
+                    });
+                } else {
+                    res.json({ status: "Invalid password" });
+                }
+            });
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
+
+//***Route Handlers for ADMIN PAGES***
+app.post("/admin_login", (req, res) => {
+    const { userid, password } = req.body;
+
+    UserModel.findOne({ userid })
+        .then((user) => {
+            if (!user) {
+                return res.json({ status: "No record existed" });
+            }
+
+            if (user.role !== "Admin") {
+                return res.json({ status: "Access denied" });
+            }
+
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if (err) {
+                    return res.status(500).json({ error: "Error comparing passwords" });
+                }
+
+                if (isMatch) {
+                    req.session.user = { userid: user.userid };
+                    req.session.save(() => {
+                        res.json({ status: "Success", user: req.session.user });
+                    });
+                } else {
+                    res.json({ status: "Invalid password" });
+                }
+            });
+        })
+        .catch((err) => res.status(500).json({ error: err.message }));
+});
 
 app.listen(3001, () => {
     console.log("Server is running")

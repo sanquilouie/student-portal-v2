@@ -4,7 +4,7 @@ import schoolLogo from '../../assets/images/school-logo.png';
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-const FacultyLoginPage = () => {
+const AdminLoginPage = () => {
   const [userid, setUserID] = useState()
   const [password, setPassword] = useState()
   const navigate = useNavigate()
@@ -12,14 +12,14 @@ const FacultyLoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post(
-        'http://localhost:3001/faculty_login', 
+        'http://localhost:3001/admin_login', 
         { userid, password }, 
         { withCredentials: true }
     )
     .then(result => {
         console.log(result.data);
         if(result.data.status === "Success"){
-            navigate('/faculty/home');
+            navigate('/admin/home');
         } else {
             alert(result.data.status);
         }
@@ -67,7 +67,7 @@ const FacultyLoginPage = () => {
     >
       <div className="h-[20%] flex justify-center">
         <div className="mt-auto">
-            <span className="text-6xl font-bold">Student Information System(Faculty)</span>
+            <span className="text-6xl font-bold">Student Information System(Admin)</span>
         </div>
       </div>
 
@@ -97,4 +97,4 @@ const FacultyLoginPage = () => {
   );
 };
 
-export default FacultyLoginPage;
+export default AdminLoginPage;
