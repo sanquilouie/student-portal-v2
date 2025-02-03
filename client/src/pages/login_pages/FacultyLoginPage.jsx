@@ -84,7 +84,7 @@ const FacultyLoginPage = () => {
             <input type="text" className="w-2/4 p-2 mb-4 border rounded" placeholder="Enter Faculty ID"
             onChange={(e) => setUserID(e.target.value)}
             />
-            <input type="text" className="w-2/4 p-2 mb-4 border rounded" placeholder="Enter Password"
+            <input type="password" className="w-2/4 p-2 mb-4 border rounded" placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
             />
             <button type='button' className="w-2/4 p-2 bg-blue-500 text-white rounded text-center" onClick={handleSubmit}>

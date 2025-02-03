@@ -53,7 +53,7 @@ export default function Navbar() {
     } catch (error) {
         console.error("Logout failed", error);
     }
-};
+  };
 
   return (
     <nav className="fixed w-full bg-transparent p-4 flex justify-between items-center text-black">
