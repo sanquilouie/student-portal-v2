@@ -22,12 +22,16 @@ import CashierHomePage from './pages/cashier_pages/HomePage'
 
 //Admin Imports
 import AdminHomePage from './pages/admin_pages/HomePage'
+import AdminCashierPage from './pages/admin_pages/CashierPage'
+import AdminFacultyPage from './pages/admin_pages/FacultyPage'
+import AdminStudentsPage from './pages/admin_pages/StudentsPage'
 
 //Catch-All Imports
 import Layout from "./components/Layout";
 
 import StudentRegistrationPage from "./StudentRegistrationPage"
 import UserRegistrationPage from './UserRegistrationPage'
+import AdminSideBar from "./components/Admin_Sidebar"
 
 
 function App() {
@@ -44,7 +48,12 @@ function App() {
         <Route path="/cashier/home" element={<CashierHomePage />} />
 
         <Route path="/admin" element={<AdminLoginPage />} />
+        <Route element={<AdminSideBar />}>
         <Route path="/admin/home" element={<AdminHomePage />} />
+        <Route path="/admin/cashier" element={<AdminCashierPage />} />
+        <Route path="/admin/faculty" element={<AdminFacultyPage />} />
+        <Route path="/admin/students" element={<AdminStudentsPage />} />
+        </Route>
 
         <Route element={<Layout />}>
           <Route path="/home" element={<HomePage />} />
