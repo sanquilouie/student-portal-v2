@@ -22,15 +22,18 @@ import CashierHomePage from './pages/cashier_pages/HomePage'
 
 //Admin Imports
 import AdminHomePage from './pages/admin_pages/HomePage'
-import AdminCashierPage from './pages/admin_pages/CashierPage'
-import AdminFacultyPage from './pages/admin_pages/FacultyPage'
-import AdminStudentsPage from './pages/admin_pages/StudentsPage'
+import AdminCashierPage from './pages/admin_pages/users/CashierPage'
+import AdminFacultyPage from './pages/admin_pages/users/FacultyPage'
+import AdminStudentsPage from './pages/admin_pages/users/StudentsPage'
+import UserRegistrationPage from './pages/admin_pages/registration/UserRegistrationPage'
+import StudentRegistrationPage from './pages/admin_pages/registration/StudentRegistrationPage'
+import FacultyRegistrationPage from './pages/admin_pages/registration/FacultyRegistrationPage'
+import CashierRegistrationPage from './pages/admin_pages/registration/CashierRegistrationPage'
 
 //Catch-All Imports
 import Layout from "./components/Layout";
 
-import StudentRegistrationPage from "./StudentRegistrationPage"
-import UserRegistrationPage from './UserRegistrationPage'
+
 import AdminSideBar from "./components/Admin_Sidebar"
 
 
@@ -49,10 +52,13 @@ function App() {
 
         <Route path="/admin" element={<AdminLoginPage />} />
         <Route element={<AdminSideBar />}>
-        <Route path="/admin/home" element={<AdminHomePage />} />
-        <Route path="/admin/cashier" element={<AdminCashierPage />} />
-        <Route path="/admin/faculty" element={<AdminFacultyPage />} />
-        <Route path="/admin/students" element={<AdminStudentsPage />} />
+          <Route path="/admin/home" element={<AdminHomePage />} />
+          <Route path="/admin/cashier" element={<AdminCashierPage />} />
+          <Route path="/admin/faculty" element={<AdminFacultyPage />} />
+          <Route path="/admin/students" element={<AdminStudentsPage />} />
+          <Route path="/admin/cashier_registration" element={<CashierRegistrationPage />} />
+          <Route path="/admin/faculty_registration" element={<FacultyRegistrationPage />} />
+          <Route path="/admin/students_registration" element={<StudentRegistrationPage />} />
         </Route>
 
         <Route element={<Layout />}>

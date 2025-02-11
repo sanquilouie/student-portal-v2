@@ -18,6 +18,7 @@ const handleLogout = async () => {
 
 const HomePage = () => {
     const [isUsersOpen, setIsUsersOpen] = useState(false);
+    const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
 
     return (
         <div className="h-screen flex">
@@ -60,10 +61,34 @@ const HomePage = () => {
                         </div>
                     )}
 
-                    <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
-                        <ClipboardCheck className="w-6 h-6" />
-                        <span className="ml-2 text-sm font-medium">Registration</span>
-                    </a>
+                    <button 
+                        onClick={() => setIsRegistrationOpen(!isRegistrationOpen)}
+                        className="flex items-center justify-between w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300"
+                    >
+                        <div className="flex items-center">
+                            <ClipboardCheck className="w-6 h-6" />
+                            <span className="ml-2 text-sm font-medium">Registration</span>
+                        </div>
+                        {isUsersOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </button>
+
+                    {isRegistrationOpen && (
+                        <div className="w-full pl-8">
+                            <Link to="/admin/cashier_registration" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                                <Wallet className="w-5 h-5" />
+                                <span className="ml-2 text-sm font-medium">Cashier</span>
+                            </Link>
+                            <Link to="/admin/faculty_registration" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                                <Users className="w-5 h-5" />
+                                <span className="ml-2 text-sm font-medium">Faculty</span>
+                            </Link>
+                            <Link to="/admin/students_registration" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                                <GraduationCap className="w-5 h-5" />
+                                <span className="ml-2 text-sm font-medium">Students</span>
+                            </Link>
+                        </div>
+                    )}
+
                     <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <CalendarCheck className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Schedule</span>
@@ -74,7 +99,7 @@ const HomePage = () => {
                     </a>
                     <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <UploadCloud className="w-6 h-6" />
-                        <span className="ml-2 text-sm font-medium">Upload</span>
+                        <span className="ml-2 text-sm font-medium">Bulk Uploads</span>
                     </a>
                 </div>
             </div>

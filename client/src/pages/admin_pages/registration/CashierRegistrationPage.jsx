@@ -29,8 +29,8 @@ function Signup() {
     }
 
     return (
-        <div className="flex items-center justify-center p-20">
-            <div className="mx-auto w-4/5">
+        <div className="flex justify-center pt-20">
+            <div className="mx-auto">
                 <form onSubmit={handleSubmit}>
                 <div className="-mx-3 flex flex-wrap">
                     <div className="w-full px-3 sm:w-1/3">
