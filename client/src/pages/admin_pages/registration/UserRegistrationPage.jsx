@@ -49,10 +49,10 @@ const UserRegistrationPage = () => {
                         name="role" 
                         id="role" 
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-3 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        value={role}  // This controls the selected option
+                        value={role}
                         onChange={(e) => setRole(e.target.value)}
                     >
-                        <option value="" disabled>Select Role</option>  {/* Removed the 'selected' attribute */}
+                        <option value="" disabled>Select Role</option>
                         <option value="Student">Student</option>
                         <option value="Faculty">Faculty</option>
                         <option value="Cashier">Cashier</option>

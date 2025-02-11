@@ -12,15 +12,13 @@ function Signup() {
     const [birthday, setBirthday] = useState()
     const [address, setAddress] = useState()
     const [course, setCourse] = useState()
-    const [year, setYear] = useState()
-    const [section, setSection] = useState()
     
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.post('http://localhost:3001/students', {studentid, fname, lname, phone, emailadd,
-                                               birthday, address, course, year, section 
+                                               birthday, address, course
         })
             .then(result => {console.log(result)
                 navigate('/')

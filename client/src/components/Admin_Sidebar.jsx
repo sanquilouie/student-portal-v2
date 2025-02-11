@@ -89,14 +89,14 @@ const HomePage = () => {
                         </div>
                     )}
 
-                    <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    <Link to="/admin/schedule" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <CalendarCheck className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Schedule</span>
-                    </a>
-                    <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    </Link>
+                    <Link to="/admin/subjects" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <BookOpen className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Subjects</span>
-                    </a>
+                    </Link>
                     <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <GraduationCap className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Courses</span>

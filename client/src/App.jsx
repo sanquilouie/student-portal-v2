@@ -31,6 +31,7 @@ import UserRegistrationPage from './pages/admin_pages/registration/UserRegistrat
 import StudentRegistrationPage from './pages/admin_pages/registration/StudentRegistrationPage'
 import FacultyRegistrationPage from './pages/admin_pages/registration/FacultyRegistrationPage'
 import CashierRegistrationPage from './pages/admin_pages/registration/CashierRegistrationPage'
+import SubjectsPage from './pages/admin_pages/SubjectsPage';
 
 //Catch-All Imports
 import Layout from "./components/Layout";
@@ -62,6 +63,7 @@ function App() {
           <Route path="/admin/cashier_registration" element={<CashierRegistrationPage />} />
           <Route path="/admin/faculty_registration" element={<FacultyRegistrationPage />} />
           <Route path="/admin/students_registration" element={<StudentRegistrationPage />} />
+          <Route path="/admin/subjects" element={<SubjectsPage />} />
         </Route>
 
         <Route element={<Layout />}>

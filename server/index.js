@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const MongoStore = require("connect-mongo");
 const StudentModel = require('./models/StudentUsers');
 const UserModel = require('./models/Users');
+const SubjectModel = require('./models/Subjects')
 
 const app = express()
 app.use(express.json())
@@ -42,6 +43,18 @@ app.post('/students', async (req, res) => {
     }
 });
 
+app.post('/post_subjects', async (req, res) => {
+    const { subjectcode, subjectname, units, semester, yearlevel } = req.body;
+
+    try {
+        const newSubject = await SubjectModel.create({ subjectcode, subjectname, units, semester, yearlevel });
+
+        res.status(201).json({ message: "Subject registered successfully", newSubject });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
 app.post('/users', (req, res) => {
     const { userid, password, role } = req.body;
@@ -65,6 +78,15 @@ app.get("/api/getstudents", async (req, res) => {
     try {
         const students = await StudentModel.find(); // Retrieve all students
         res.json(students);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+app.get("/api/getsubjects", async (req, res) => {
+    try {
+        const subjects = await SubjectModel.find(); // Retrieve all subjects
+        res.json(subjects);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
