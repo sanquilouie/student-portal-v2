@@ -67,7 +67,7 @@ const HomePage = () => {
                     >
                         <div className="flex items-center">
                             <ClipboardCheck className="w-6 h-6" />
-                            <span className="ml-2 text-sm font-medium">Registration</span>
+                            <span className="ml-2 text-xs font-medium">Registration</span>
                         </div>
                         {isUsersOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
@@ -96,6 +96,10 @@ const HomePage = () => {
                     <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <BookOpen className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Subjects</span>
+                    </a>
+                    <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                        <GraduationCap className="w-6 h-6" />
+                        <span className="ml-2 text-sm font-medium">Courses</span>
                     </a>
                     <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <UploadCloud className="w-6 h-6" />

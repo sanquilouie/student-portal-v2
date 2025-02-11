@@ -24,11 +24,24 @@ app.use(
 )
 
 //***Registration routes***
-app.post('/students', (req, res) => {
-    StudentModel.create(req.body)
-    .then(students => res.json(students))
-    .catch(err => res.json(err))
-})
+app.post('/students', async (req, res) => {
+    const { studentid, fname, lname, phone, emailadd,
+        birthday, address, course, year, section } = req.body;
+
+    try {
+        // Step 1: Create the User
+        const newUser = await UserModel.create({ userid: studentid, role: "Student" });
+
+        // Step 2: Create the Student
+        const newStudent = await StudentModel.create({ studentid, fname, lname, phone, emailadd,
+            birthday, address, course, year, section });
+
+        res.status(201).json({ message: "Student registered successfully", newUser, newStudent });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
 app.post('/users', (req, res) => {
     const { userid, password, role } = req.body;
@@ -48,6 +61,15 @@ app.post('/users', (req, res) => {
 });
 
 //***Catch-all routes***
+app.get("/api/getstudents", async (req, res) => {
+    try {
+        const students = await StudentModel.find(); // Retrieve all students
+        res.json(students);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 app.get("/navbar", (req, res) => {
     if (req.session.user) {
         const { studentid } = req.session.user;

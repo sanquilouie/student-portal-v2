@@ -35,10 +35,10 @@ function Signup() {
                 <div className="-mx-3 flex flex-wrap">
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="studentid" className="mb-3 block text-base font-medium text-[#07074D]">
-                                Student ID
+                            <label htmlFor="facultyid" className="mb-3 block text-base font-medium text-[#07074D]">
+                                Faculty ID
                             </label>
-                            <input type="text" name="studentid" id="studentid" placeholder="Student ID"
+                            <input type="text" name="facultyid" id="facultyid" placeholder="Faculty ID"
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" 
                                 onChange={(e) => setID(e.target.value)}
                                 />
@@ -111,40 +111,14 @@ function Signup() {
                         onChange={(e) => setAddress(e.target.value)}
                         />
                 </div>
-                <div className="-mx-3 flex flex-wrap">
-                    <div className="w-full px-3 sm:w-1/3">
-                        <div className="mb-5">
-                            <label htmlFor="course" className="mb-3 block text-base font-medium text-[#07074D]">
-                                Course
-                            </label>
-                            <input type="text" name="course" id="course" placeholder="Enter your course"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" 
-                                onChange={(e) => setCourse(e.target.value)}
-                                />
-                        </div>
-                    </div>
-                    <div className="w-full px-3 sm:w-1/3">
-                        <div className="mb-5">
-                            <label htmlFor="year" className="mb-3 block text-base font-medium text-[#07074D]">
-                                Year
-                            </label>
-                            <input type="text" name="year" id="year" placeholder="Enter your year"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" 
-                                onChange={(e) => setYear(e.target.value)}
-                                />
-                        </div>
-                    </div>
-                    <div className="w-full px-3 sm:w-1/3">
-                        <div className="mb-5">
-                            <label htmlFor="section" className="mb-3 block text-base font-medium text-[#07074D]">
-                                Section
-                            </label>
-                            <input type="text" name="section" id="section" placeholder="Enter your section"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" 
-                                onChange={(e) => setSection(e.target.value)}
-                                />
-                        </div>
-                    </div>
+                <div className="mb-5">
+                    <label htmlFor="course" className="mb-3 block text-base font-medium text-[#07074D]">
+                        Courses
+                    </label>
+                    <input type="text" name="course" id="course" placeholder="Enter your course"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" 
+                        onChange={(e) => setCourse(e.target.value)}
+                        />
                 </div>
                 <div>
                     <button

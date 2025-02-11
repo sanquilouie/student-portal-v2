@@ -1,5 +1,7 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import { Toaster } from "react-hot-toast";
 
 //Login Imports
 import LoginPage from './pages/login_pages/LoginPage'
@@ -41,6 +43,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         <Route path="/" element={<LoginPage />} />
 
@@ -71,8 +74,8 @@ function App() {
         <Route path="/studentregistration" element={<StudentRegistrationPage />} />
         <Route path="/userregistration" element={<UserRegistrationPage />} />
       </Routes>
-    </BrowserRouter>
-      
+      <ToastContainer />
+    </BrowserRouter>   
   )
 }
 
