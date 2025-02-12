@@ -2,41 +2,10 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AddSubjectModal from "../../components/SubjectRegistrationModal";
 
 const SubjectsPage = () => {
-    const [subjectcode, setSubjectCode] = useState()
-    const [units, setUnits] = useState()
-    const [semester, setSemester] = useState()
-    const [yearlevel, setYearLevel] = useState()
-    const [subjectname, setSubjectName] = useState()
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:3001/post_subjects', {subjectcode, subjectname, units, semester, yearlevel
-        })
-            .then(result => {
-                console.log(result);
-        
-                toast.success("Subject Registered Successfully!", {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true
-                });
-        
-                setSubjectCode("");
-                setSubjectName("");
-                setUnits("");
-                setSemester("");
-                setYearLevel("");
-            })
-            .catch(err => {
-                console.log(err);
-                toast.error("Error Registering Subject!");
-                    });
-    }
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleDelete = (id) => {
         toast(
@@ -100,6 +69,22 @@ const SubjectsPage = () => {
 
     return (
         <div>
+            <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center space-x-2">
+                    <input 
+                        type="text" 
+                        placeholder="Search Code..." 
+                        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <button className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500">
+                        Search
+                    </button>
+                </div>
+
+                <button className="px-4 py-2 font-medium text-white bg-green-600 rounded-md hover:bg-green-500" onClick={() => setIsModalOpen(true)}>
+                    Add New Subject
+                </button>
+            </div>
             <table className="min-w-full table-fixed divide-y divide-gray-200">
                 <thead>
                     <tr>
@@ -161,92 +146,12 @@ const SubjectsPage = () => {
                     Next
                 </button>
             </div>
+            <AddSubjectModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)}
+            />
         </div>
-        /*** <div className="flex justify-center pt-20">
-            <div className="mx-auto">
-                <form onSubmit={handleSubmit}>
-                <div className="-mx-3 flex flex-wrap">
-                    <div className="w-full px-3 sm:w-1/3">
-                        <div className="mb-5">
-                            <label htmlFor="code" className="mb-3 block text-base font-medium text-[#07074D]">
-                                    Subject Code
-                            </label>
-                            <input type="text" name="code" id="code" placeholder="Subject Code" value={subjectcode}
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" 
-                                onChange={(e) => setSubjectCode(e.target.value)}
-                                />
-                        </div>
-                    </div>
-                    <div className="w-full px-3 sm:w-2/3">
-                        <label htmlFor="name" className="mb-3 block text-base font-medium text-[#07074D]">
-                            Subject Name
-                        </label>
-                        <input type="text" name="name" id="name" placeholder="Subject Name" value={subjectname}
-                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" 
-                            onChange={(e) => setSubjectName(e.target.value)}
-                            />
-                    </div>
-                </div>
-                <div className="-mx-3 flex flex-wrap">
-                    <div className="w-full px-3 sm:w-1/3">
-                        <div className="mb-5">
-                            <label htmlFor="units" className="mb-3 block text-base font-medium text-[#07074D]">
-                                Units
-                            </label>
-                            <input type="text" name="units" id="units" placeholder="Units" value={units}
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" 
-                                onChange={(e) => setUnits(e.target.value)}
-                                />
-                        </div>
-                    </div>
-                    <div className="w-full px-3 sm:w-1/3">
-                        <div className="mb-5">
-                            <label htmlFor="semester" className="mb-3 block text-base font-medium text-[#07074D]">
-                                Semester
-                            </label>
-                            <select 
-                                name="role" 
-                                id="role" 
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-3 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                value={semester}
-                                onChange={(e) => setSemester(e.target.value)}
-                            >
-                                <option value="" disabled>Select Semester</option>
-                                <option value="1st Semester">1st Semester</option>
-                                <option value="2nd Semester">2nd Semester</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="w-full px-3 sm:w-1/3">
-                        <div className="mb-5">
-                            <label htmlFor="yearlevel" className="mb-3 block text-base font-medium text-[#07074D]">
-                                Year Level
-                            </label>
-                            <select 
-                                name="role" 
-                                id="role" 
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-3 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                value={yearlevel}
-                                onChange={(e) => setYearLevel(e.target.value)}
-                            >
-                                <option value="" disabled>Select Year Level</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <button
-                        className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                        Register
-                    </button>
-                </div>
-                </form>
-            </div>
-        </div> ***/
+        
     );
 }
 
