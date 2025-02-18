@@ -97,10 +97,10 @@ const HomePage = () => {
                         <BookOpen className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Subjects</span>
                     </Link>
-                    <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    <Link to="/admin/programs" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <GraduationCap className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Courses</span>
-                    </a>
+                    </Link>
                     <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <UploadCloud className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Bulk Uploads</span>
