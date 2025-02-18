@@ -4,9 +4,11 @@ const cors = require("cors")
 const session = require("express-session"); 
 const bcrypt = require('bcryptjs');
 const MongoStore = require("connect-mongo");
-const StudentModel = require('./models/StudentUsers');
 const UserModel = require('./models/Users');
 const SubjectModel = require('./models/Subjects')
+const FacultyModel = require('./models/FacultyUsers')
+const CashierModel = require('./models/CashierUsers')
+const StudentModel = require('./models/StudentUsers');
 
 const app = express()
 app.use(express.json())
@@ -30,10 +32,7 @@ app.post('/students', async (req, res) => {
         birthday, address, course, year, section } = req.body;
 
     try {
-        // Step 1: Create the User
         const newUser = await UserModel.create({ userid: studentid, role: "Student" });
-
-        // Step 2: Create the Student
         const newStudent = await StudentModel.create({ studentid, fname, lname, phone, emailadd,
             birthday, address, course, year, section });
 
@@ -42,6 +41,33 @@ app.post('/students', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
+app.post('/cashier', async (req, res) => {
+    const { cashierid, fname, lname, phone, emailadd, birthday, address, password } = req.body;
+
+    try {
+        const newUser = await UserModel.create({ userid: cashierid, role: "Cashier", password: password });
+        const newCashier = await CashierModel.create({ cashierid, fname, lname, phone, emailadd, birthday, address });
+
+        res.status(201).json({ message: "Cashier registered successfully", newUser, newCashier });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+app.post('/faculty', async (req, res) => {
+    const { facultyid, fname, lname, phone, emailadd, password, birthday, address } = req.body;
+
+    try {
+        const newUser = await UserModel.create({ userid: facultyid, role: "Faculty", password: password });
+        const newFaculty = await FacultyModel.create({ facultyid, fname, lname, phone, emailadd, birthday, address });
+
+        res.status(201).json({ message: "Faculty registered successfully", newUser, newFaculty });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+//***********//
 
 app.post('/post_subjects', async (req, res) => {
     const { subjectcode, subjectname, units, semester, yearlevel } = req.body;
@@ -55,29 +81,44 @@ app.post('/post_subjects', async (req, res) => {
     }
 });
 
-
 app.post('/users', (req, res) => {
     const { userid, password, role } = req.body;
-    bcrypt.hash(password, 10, (err, hashedPassword) => {
-        if (err) {
-            return res.status(500).json({ error: 'Error hashing password' });
-        }
-        const userData = {
-            userid,
-            password: hashedPassword,
-            role
-        };
-        UserModel.create(userData)
-            .then(users => res.json(users))
-            .catch(err => res.json(err));
-    });
+
+    const userData = {
+        userid,
+        password, // Do not hash here
+        role
+    };
+
+    UserModel.create(userData)
+        .then(users => res.json(users))
+        .catch(err => res.json(err));
 });
+
 
 //***Catch-all routes***
 app.get("/api/getstudents", async (req, res) => {
     try {
-        const students = await StudentModel.find(); // Retrieve all students
+        const students = await StudentModel.find();
         res.json(students);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+app.get("/api/getfaculty", async (req, res) => {
+    try {
+        const faculty = await FacultyModel.find(); 
+        res.json(faculty);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+app.get("/api/getcashier", async (req, res) => {
+    try {
+        const cashier = await CashierModel.find(); 
+        res.json(cashier);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -197,8 +238,9 @@ app.get("/studentprofile", (req, res) => {
 
 //***Route Handlers for FACULTY PAGES***
 app.post("/faculty_login", (req, res) => {
+    console.log("Entered password:", req.body.password);
     const { userid, password } = req.body;
-
+    
     UserModel.findOne({ userid })
         .then((user) => {
             if (!user) {
@@ -209,6 +251,7 @@ app.post("/faculty_login", (req, res) => {
                 return res.json({ status: "Access denied" });
             }
 
+            
             bcrypt.compare(password, user.password, (err, isMatch) => {
                 if (err) {
                     return res.status(500).json({ error: "Error comparing passwords" });
@@ -220,7 +263,7 @@ app.post("/faculty_login", (req, res) => {
                         res.json({ status: "Success", user: req.session.user });
                     });
                 } else {
-                    res.json({ status: "Invalid password" });
+                    res.json({ status: "Invalid password"});
                 }
             });
         })
