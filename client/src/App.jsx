@@ -33,13 +33,12 @@ import FacultyRegistrationPage from './pages/admin_pages/registration/FacultyReg
 import CashierRegistrationPage from './pages/admin_pages/registration/CashierRegistrationPage'
 import SubjectsPage from './pages/admin_pages/SubjectsPage';
 import ProgramsPage from './pages/admin_pages/ProgramsPage';
+import DepartmentsPage from './pages/admin_pages/DepartmentsPage';
 
 //Catch-All Imports
 import Layout from "./components/Layout";
 
-
 import AdminSideBar from "./components/Admin_Sidebar"
-
 
 function App() {
 
@@ -66,6 +65,7 @@ function App() {
           <Route path="/admin/students_registration" element={<StudentRegistrationPage />} />
           <Route path="/admin/subjects" element={<SubjectsPage />} />
           <Route path="/admin/programs" element={<ProgramsPage />} />
+          <Route path="/admin/departments" element={<DepartmentsPage />} />
         </Route>
 
         <Route element={<Layout />}>

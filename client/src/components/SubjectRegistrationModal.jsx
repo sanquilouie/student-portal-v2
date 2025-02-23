@@ -63,7 +63,6 @@ export default function SubjectRegistrationModal({ isOpen, onClose }) {
                             />
                         </div>
                     </div>
-
                     <div className="-mx-3 flex flex-wrap mt-4">
                         <div className="w-full px-3 sm:w-1/3">
                             <label className="block text-base font-medium text-gray-700">Units</label>

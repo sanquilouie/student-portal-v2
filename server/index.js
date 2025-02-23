@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const MongoStore = require("connect-mongo");
 const UserModel = require('./models/Users');
 const SubjectModel = require('./models/Subjects')
+const DepartmentModel = require('./models/Department')
 const ProgramModel = require('./models/Programs')
 const FacultyModel = require('./models/FacultyUsers')
 const CashierModel = require('./models/CashierUsers')
@@ -94,6 +95,18 @@ app.post('/post_programs', async (req, res) => {
     }
 });
 
+app.post('/post_departments', async (req, res) => {
+    const { department_code, department_name, dean, contact_email, contact_phone } = req.body;
+
+    try {
+        const newDepartment = await DepartmentModel.create({ department_code, department_name, dean, contact_email, contact_phone });
+
+        res.status(201).json({ message: "Department registered successfully", newDepartment });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 app.post('/users', (req, res) => {
     const { userid, password, role } = req.body;
 
@@ -150,6 +163,15 @@ app.get("/api/getprograms", async (req, res) => {
     try {
         const programs = await ProgramModel.find(); // Retrieve all programs
         res.json(programs);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+app.get("/api/getdepartments", async (req, res) => {
+    try {
+        const departments = await DepartmentModel.find(); // Retrieve all departments
+        res.json(departments);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

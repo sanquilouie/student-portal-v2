@@ -4,7 +4,7 @@ import { Outlet, Link } from "react-router-dom";
 import { 
     LayoutDashboard, Wallet, Users, ClipboardCheck, 
     CalendarCheck, GraduationCap, BookOpen, UploadCloud, 
-    ChevronDown, ChevronUp 
+    ChevronDown, ChevronUp, Building 
 } from "lucide-react";
 
 const handleLogout = async () => {
@@ -100,6 +100,10 @@ const HomePage = () => {
                     <Link to="/admin/programs" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <GraduationCap className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Courses</span>
+                    </Link>
+                    <Link to="/admin/departments" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                        <Building className="w-6 h-6" />
+                        <span className="ml-2 text-sm font-medium">Departments</span>
                     </Link>
                     <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <UploadCloud className="w-6 h-6" />
