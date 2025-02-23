@@ -19,7 +19,7 @@ const AdminLoginPage = () => {
     .then(result => {
         console.log(result.data);
         if(result.data.status === "Success"){
-            navigate('/admin/home');
+            navigate('/admin/dashboard');
         } else {
             alert(result.data.status);
         }
