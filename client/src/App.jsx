@@ -23,7 +23,7 @@ import FacultyHomePage from './pages/faculty_pages/HomePage'
 import CashierHomePage from './pages/cashier_pages/HomePage'
 
 //Admin Imports
-import AdminHomePage from './pages/admin_pages/HomePage'
+import AdminDashboard from './pages/admin_pages/Dashboard'
 import AdminCashierPage from './pages/admin_pages/users/CashierPage'
 import AdminFacultyPage from './pages/admin_pages/users/FacultyPage'
 import AdminStudentsPage from './pages/admin_pages/users/StudentsPage'
@@ -56,7 +56,7 @@ function App() {
 
         <Route path="/admin" element={<AdminLoginPage />} />
         <Route element={<AdminSideBar />}>
-          <Route path="/admin/home" element={<AdminHomePage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/cashier" element={<AdminCashierPage />} />
           <Route path="/admin/faculty" element={<AdminFacultyPage />} />
           <Route path="/admin/students" element={<AdminStudentsPage />} />

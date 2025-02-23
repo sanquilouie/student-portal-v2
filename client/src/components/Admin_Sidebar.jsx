@@ -28,10 +28,10 @@ const HomePage = () => {
             </a>
             <div className="w-full px-2 flex-grow">
                 <div className="flex flex-col items-center w-full mt-3 border-t border-gray-700">
-                    <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    <Link to="/admin/dashboard" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
                         <LayoutDashboard className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Dashboard</span>
-                    </a>
+                    </Link>
 
                     <button 
                         onClick={() => setIsUsersOpen(!isUsersOpen)}

@@ -215,6 +215,25 @@ app.post("/logout", (req, res) => {
     });
 });
 
+app.get('/counts', async (req, res) => {
+    try {
+      const [students, faculty, programs, subjects] = await Promise.all([
+        StudentModel.countDocuments(),
+        FacultyModel.countDocuments(),
+        ProgramModel.countDocuments(),
+        SubjectModel.countDocuments(),
+      ]);
+  
+      res.json({
+        totalStudents: students,
+        totalFaculty: faculty,
+        totalPrograms: programs,
+        totalSubjects: subjects,
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Server Error', error });
+    }
+  });
 
 //***Route Handlers for STUDENT PAGES***
 
