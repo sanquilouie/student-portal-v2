@@ -18,7 +18,11 @@ const AdminLoginPage = () => {
     )
     .then(result => {
         console.log(result.data);
+<<<<<<< HEAD:client/src/pages/login_pages/AdminLoginPage.tsx
         if (result.data.status === "Success") {
+=======
+        if(result.data.status === "Success"){
+>>>>>>> 49c31b9 (changed admin dashboard link):client/src/pages/login_pages/AdminLoginPage.jsx
             navigate('/admin/dashboard');
         } else {
             alert(result.data.status);
