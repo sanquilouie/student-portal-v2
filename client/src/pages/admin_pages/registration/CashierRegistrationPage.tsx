@@ -5,48 +5,58 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
-    const [cashierid, setID] = useState()
-    const [fname, setFirstName] = useState()
-    const [lname, setLastName] = useState()
-    const [phone, setPhone] = useState()
-    const [emailadd, setEmail] = useState()
-    const [birthday, setBirthday] = useState()
-    const [address, setAddress] = useState()
-    const [password, setPassword] = useState()
+    const [cashierid, setID] = useState<string>("");
+    const [fname, setFirstName] = useState<string>("");
+    const [lname, setLastName] = useState<string>("");
+    const [phone, setPhone] = useState<string>("");
+    const [emailadd, setEmail] = useState<string>("");
+    const [birthday, setBirthday] = useState<string>("");
+    const [address, setAddress] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:3001/cashier', {cashierid, fname, lname, phone, emailadd,
-                                               birthday, address, password
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+    
+        axios.post('http://localhost:3001/cashier', {
+            cashierid,
+            fname,
+            lname,
+            phone,
+            emailadd,
+            birthday,
+            address,
+            password
         })
-            .then(result => {
-                console.log(result);
-        
-                // Show success toast notification
-                toast.success("Cashier registered successfully!", {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true
-                });
-        
-                // Clear input fields
-                setID("");
-                setFirstName("");
-                setLastName("");
-                setPhone("");
-                setEmail("");
-                setBirthday("");
-                setAddress("");
-                setPassword("");
-            })
-            .catch(err => {
-                console.log(err);
-                toast.error("Error registering cashier!");
+        .then((result) => {
+            console.log(result);
+    
+            // Show success toast notification
+            toast.success("Cashier registered successfully!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
             });
-    }
+    
+            // Clear input fields
+            setID("");
+            setFirstName("");
+            setLastName("");
+            setPhone("");
+            setEmail("");
+            setBirthday("");
+            setAddress("");
+            setPassword("");
+        })
+        .catch((err) => {
+            console.error(err);
+            toast.error("Error registering cashier!");
+        });
+    };
+    
 
     return (
         <div className="flex justify-center pt-20">

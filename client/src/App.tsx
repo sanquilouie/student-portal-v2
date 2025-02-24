@@ -24,7 +24,7 @@ import FacultyHomePage from './pages/faculty_pages/HomePage';
 import CashierHomePage from './pages/cashier_pages/HomePage';
 
 // Admin Imports
-import AdminDashboard from './pages/admin_pages/Dashboard';
+import AdminDashboard from './pages/Dashboard/Home';
 import AdminCashierPage from './pages/admin_pages/users/CashierPage';
 import AdminFacultyPage from './pages/admin_pages/users/FacultyPage';
 import AdminStudentsPage from './pages/admin_pages/users/StudentsPage';
@@ -38,7 +38,7 @@ import DepartmentsPage from './pages/admin_pages/DepartmentsPage';
 
 // Catch-All Imports
 import Layout from "./components/Layout";
-import AdminSideBar from "./components/Admin_Sidebar";
+import AdminLayout from "./layout/AppLayout";
 
 const App: React.FC = () => {
   return (
@@ -52,7 +52,7 @@ const App: React.FC = () => {
         <Route path="/cashier/home" element={<CashierHomePage />} />
         <Route path="/admin" element={<AdminLoginPage />} />
 
-        <Route element={<AdminSideBar />}>
+        <Route element={<AdminLayout />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/cashier" element={<AdminCashierPage />} />
           <Route path="/admin/faculty" element={<AdminFacultyPage />} />

@@ -4,14 +4,19 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function SubjectRegistrationModal({ isOpen, onClose }) {
+type SubjectRegistrationModalProps = {
+    isOpen: boolean;
+    onClose: () => void;
+  };
+
+  const SubjectRegistrationModal: React.FC<SubjectRegistrationModalProps> = ({ isOpen, onClose }) => {
     const [subjectcode, setSubjectCode] = useState("");
     const [subjectname, setSubjectName] = useState("");
     const [units, setUnits] = useState("");
     const [semester, setSemester] = useState("");
     const [yearlevel, setYearLevel] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         axios.post('http://localhost:3001/post_subjects', {subjectcode, subjectname, units, semester, yearlevel
         })
@@ -114,4 +119,6 @@ export default function SubjectRegistrationModal({ isOpen, onClose }) {
             </div>
         </div>
     );
-}
+};
+
+export default SubjectRegistrationModal;

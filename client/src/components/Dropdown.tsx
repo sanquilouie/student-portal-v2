@@ -2,14 +2,19 @@
 import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
-function Dropdown({ label, items }) {
+type DropdownProps = {
+  label: string;
+  items: string[]; // Assuming items is an array of strings
+};
+
+const Dropdown: React.FC<DropdownProps> = ({ label, items }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(label);
 
-  const handleSelect = (item) => {
+  const handleSelect = (item: string) => {
     setSelected(item);
     setIsOpen(false);
-  };
+  };  
 
   return (
     <div className="relative inline-block text-left">

@@ -4,14 +4,19 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function ProgramRegistrationModal({ isOpen, onClose }) {
+type ProgramRegistrationModalProps = {
+    isOpen: boolean;
+    onClose: () => void;
+  };
+  
+  const ProgramRegistrationModal: React.FC<ProgramRegistrationModalProps> = ({ isOpen, onClose }) => {
     const [program_code, setProgramCode] = useState("");
     const [program_name, setProgramName] = useState("");
     const [duration_years, setDurationYears] = useState("");
     const [total_units, setTotalUnits] = useState("");
     const [department_code, setDepartmentCode] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         axios.post('http://localhost:3001/post_programs', {program_code, program_name, duration_years, total_units, department_code
         })
@@ -105,4 +110,6 @@ export default function ProgramRegistrationModal({ isOpen, onClose }) {
             </div>
         </div>
     );
-}
+};
+
+export default ProgramRegistrationModal;

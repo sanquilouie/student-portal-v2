@@ -23,12 +23,12 @@ const HomePage = () => {
     return (
         <div className="h-screen flex">
         <div className="w-40 bg-gray-900 text-gray-400 flex flex-col items-center">
-            <a className="flex items-center w-full px-3 mt-3" href="#">
+            <a className="flex items-center w-full px-3 mt-3">
                 <span className="ml-2 text-sm font-bold">Admin</span>
             </a>
             <div className="w-full px-2 flex-grow">
                 <div className="flex flex-col items-center w-full mt-3 border-t border-gray-700">
-                    <Link to="/admin/dashboard" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    <Link to="/admin/dashboard" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300">
                         <LayoutDashboard className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Dashboard</span>
                     </Link>
@@ -46,15 +46,15 @@ const HomePage = () => {
 
                     {isUsersOpen && (
                         <div className="w-full pl-8">
-                            <Link to="/admin/cashier" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                            <Link to="/admin/cashier" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300">
                                 <Wallet className="w-5 h-5" />
                                 <span className="ml-2 text-sm font-medium">Cashier</span>
                             </Link>
-                            <Link to="/admin/faculty" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                            <Link to="/admin/faculty" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300">
                                 <Users className="w-5 h-5" />
                                 <span className="ml-2 text-sm font-medium">Faculty</span>
                             </Link>
-                            <Link to="/admin/students" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                            <Link to="/admin/students" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300">
                                 <GraduationCap className="w-5 h-5" />
                                 <span className="ml-2 text-sm font-medium">Students</span>
                             </Link>
@@ -74,44 +74,44 @@ const HomePage = () => {
 
                     {isRegistrationOpen && (
                         <div className="w-full pl-8">
-                            <Link to="/admin/cashier_registration" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                            <Link to="/admin/cashier_registration" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300">
                                 <Wallet className="w-5 h-5" />
                                 <span className="ml-2 text-sm font-medium">Cashier</span>
                             </Link>
-                            <Link to="/admin/faculty_registration" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                            <Link to="/admin/faculty_registration" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300">
                                 <Users className="w-5 h-5" />
                                 <span className="ml-2 text-sm font-medium">Faculty</span>
                             </Link>
-                            <Link to="/admin/students_registration" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                            <Link to="/admin/students_registration" className="flex items-center w-full h-10 px-3 mt-1 rounded hover:bg-gray-700 hover:text-gray-300">
                                 <GraduationCap className="w-5 h-5" />
                                 <span className="ml-2 text-sm font-medium">Students</span>
                             </Link>
                         </div>
                     )}
 
-                    <Link to="/admin/schedule" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    <Link to="/admin/schedule" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300">
                         <CalendarCheck className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Schedule</span>
                     </Link>
-                    <Link to="/admin/subjects" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    <Link to="/admin/subjects" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300">
                         <BookOpen className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Subjects</span>
                     </Link>
-                    <Link to="/admin/programs" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    <Link to="/admin/programs" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300">
                         <GraduationCap className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Courses</span>
                     </Link>
-                    <Link to="/admin/departments" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    <Link to="/admin/departments" className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300">
                         <Building className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Departments</span>
                     </Link>
-                    <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300" href="#">
+                    <a className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300">
                         <UploadCloud className="w-6 h-6" />
                         <span className="ml-2 text-sm font-medium">Bulk Uploads</span>
                     </a>
                 </div>
             </div>
-            <a onClick={handleLogout} className="flex items-center justify-center w-full h-10 mt-auto bg-red-800 hover:bg-red-700 hover:text-gray-300" href="#">
+            <a onClick={handleLogout} className="flex items-center justify-center w-full h-10 mt-auto bg-red-800 hover:bg-red-700 hover:text-gray-300">
                 <svg width="25px" height="25px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.5 7.5L10.5 10.75M13.5 7.5L10.5 4.5M13.5 7.5L4 7.5M8 13.5H1.5L1.5 1.5L8 1.5" stroke="#000000"/>
                 </svg>

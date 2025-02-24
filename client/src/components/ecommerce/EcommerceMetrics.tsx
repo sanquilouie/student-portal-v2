@@ -1,0 +1,31 @@
+export default function EcommerceMetrics() {
+  return (
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-3 xl:grid-cols-4 text-center items-center">
+      {/* <!-- Metric Item Start --> */}
+      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+          <dt className="text-sm font-semibold leading-6 dark:text-gray-400">Total Students</dt>
+          <dd className="order-first text-3xl font-semibold tracking-tight dark:text-white/90">12,345</dd>
+      </div>
+      {/* <!-- Metric Item End --> */}
+
+      {/* <!-- Metric Item Start --> */}
+      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+          <dt className="text-sm font-semibold leading-6 dark:text-gray-400">Total Faculty</dt>
+          <dd className="order-first text-3xl font-semibold tracking-tight dark:text-white/90">12,345</dd>
+      </div>
+      {/* <!-- Metric Item End --> */}
+      {/* <!-- Metric Item Start --> */}
+      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+          <dt className="text-sm font-semibold leading-6 dark:text-gray-400">Total Courses</dt>
+          <dd className="order-first text-3xl font-semibold tracking-tight dark:text-white/90">12,345</dd>
+      </div>
+      {/* <!-- Metric Item End --> */}
+      {/* <!-- Metric Item Start --> */}
+      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+          <dt className="text-sm font-semibold leading-6 dark:text-gray-400">Total Subjects</dt>
+          <dd className="order-first text-3xl font-semibold tracking-tight dark:text-white/90">12,345</dd>
+      </div>
+      {/* <!-- Metric Item End --> */}
+    </div>
+  );
+}

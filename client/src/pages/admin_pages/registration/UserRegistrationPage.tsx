@@ -3,13 +3,13 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
 const UserRegistrationPage = () => {
-    const [userid, setID] = useState()
-    const [password, setPassword] = useState()
-    const [role, setRole] = useState('')
+    const [userid, setID] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [role, setRole] = useState<string>("");
     
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         axios.post('http://localhost:3001/users', {userid, password, role
         })

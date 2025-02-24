@@ -3,6 +3,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+type UserData = {
+  fname: string;
+  lname: string;
+};
+
 export default function Navbar() {
   const [currentTime, setCurrentTime] = useState("");
 
@@ -25,7 +30,7 @@ export default function Navbar() {
     return () => clearInterval(interval); 
   }, []);
 
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -64,7 +69,7 @@ export default function Navbar() {
             <details className="group">
               <summary className="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
                 <span className="flex gap-2">
-                  <span>{userData.lname}, {userData.fname}</span>
+                  {userData ? `${userData.lname}, ${userData.fname}` : "Loading..."}
                 </span>
                 <svg className="w-5 h-5 text-gray-500 transition group-open:rotate-90" xmlns="http://www.w3.org/2000/svg"
                     width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

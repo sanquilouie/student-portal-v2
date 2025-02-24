@@ -4,14 +4,19 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function DepartmentRegistrationModal({ isOpen, onClose }) {
+type DepartmentRegistrationModalProps = {
+    isOpen: boolean;
+    onClose: () => void;
+  };
+
+  const DepartmentRegistrationModal: React.FC<DepartmentRegistrationModalProps> = ({ isOpen, onClose }) => {
     const [department_code, setDepartmentCode] = useState("");
     const [department_name, setDepartmentName] = useState("");
     const [dean, setDean] = useState("");
     const [contact_email, setContactEmail] = useState("");
     const [contact_phone, setContactPhone] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         axios.post('http://localhost:3001/post_departments', {department_code, department_name, dean, contact_email, contact_phone
         })
@@ -105,4 +110,6 @@ export default function DepartmentRegistrationModal({ isOpen, onClose }) {
             </div>
         </div>
     );
-}
+};
+
+export default DepartmentRegistrationModal;

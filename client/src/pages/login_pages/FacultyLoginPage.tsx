@@ -5,21 +5,21 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 
 const FacultyLoginPage = () => {
-  const [userid, setUserID] = useState()
-  const [password, setPassword] = useState()
+  const [userid, setUserID] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    axios.post(
+    axios.post<{ status: string }>(
         'http://localhost:3001/faculty_login', 
         { userid, password }, 
         { withCredentials: true }
     )
     .then(result => {
         console.log(result.data);
-        if(result.data.status === "Success"){
-            navigate('/faculty/home');
+        if (result.data.status === "Success") {
+            navigate('/faculty/dashboard');
         } else {
             alert(result.data.status);
         }
@@ -35,9 +35,11 @@ const FacultyLoginPage = () => {
   const updateTime = () => {
     const now = new Date();
     
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const padStart = (num: number) => num < 10 ? `0${num}` : `${num}`;
+
+    const hours: string = padStart(now.getHours());
+    const minutes: string = padStart(now.getMinutes());
+    const seconds: string = padStart(now.getSeconds());
     const timeString = `${hours}:${minutes}:${seconds}`;
 
     const dateString = now.toLocaleDateString('en-US', {
@@ -78,7 +80,7 @@ const FacultyLoginPage = () => {
             <span className="text-black text-3xl font-semibold ml-auto">{date}</span>
           </div>
         </div>
-        <form className="w-1/2 flex justify-center">
+        <form className="w-1/2 flex justify-center" onClick={handleSubmit}>
         <div className="w-full flex flex-col justify-center items-center">
             <img src={schoolLogo} alt="Logo" className="w-60 h-60 mb-6"/>
             <input type="text" className="w-2/4 p-2 mb-4 border rounded" placeholder="Enter Faculty ID"
@@ -87,7 +89,7 @@ const FacultyLoginPage = () => {
             <input type="password" className="w-2/4 p-2 mb-4 border rounded" placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
             />
-            <button type='button' className="w-2/4 p-2 bg-blue-500 text-white rounded text-center" onClick={handleSubmit}>
+            <button type='button' className="w-2/4 p-2 bg-blue-500 text-white rounded text-center">
                 Sign In
             </button>
         </div>

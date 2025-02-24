@@ -7,37 +7,43 @@ import axios from 'axios';
 
 const LoginPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [studentid, setStudentID] = useState()
+  const [studentid, setStudentID] = useState<string>('');
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
-      e.preventDefault()
-      axios.post('http://localhost:3001/login', {studentid}, { withCredentials: true })
-          .then(result => {
-              console.log(result)
-              console.log(result.data)
-              if(result.data.status === "Success"){
-                  navigate('/home')
-              }   
-          })
-          .catch(err=> console.log(err)) 
-  }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    axios.post(
+        'http://localhost:3001/login',
+        { studentid },
+        { withCredentials: true }
+    )
+    .then(result => {
+        console.log(result.data);
+        if (result.data.status === "Success") {
+            navigate('/home');
+        }
+    })
+    .catch(err => console.log(err));
+};
 
-  const [userData, setUserData] = useState(null);
 
-  const handleUserValidation = (e) => {
+const [userData, setUserData] = useState<{ lname: string; fname: string } | null>(null);
+
+
+  const handleUserValidation = (e: React.FormEvent) => {
     e.preventDefault();
     setIsOpen(true);
     axios
-      .post('http://localhost:3001/prompt', {studentid})
+      .post('http://localhost:3001/prompt', { studentid })
       .then((response) => {
-        console.log(response.data)
-        setUserData(response.data); 
+        console.log(response.data);
+        setUserData(response.data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  };
+};
+
   
   // Function to update time and date
   const [time, setTime] = useState('');
@@ -46,9 +52,11 @@ const LoginPage = () => {
   const updateTime = () => {
     const now = new Date();
     
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const padStart = (num: number) => num < 10 ? `0${num}` : `${num}`;
+
+    const hours: string = padStart(now.getHours());
+    const minutes: string = padStart(now.getMinutes());
+    const seconds: string = padStart(now.getSeconds());
     const timeString = `${hours}:${minutes}:${seconds}`;
 
     const dateString = now.toLocaleDateString('en-US', {
@@ -103,7 +111,7 @@ const LoginPage = () => {
                   <div className="bg-gray-100 p-6 rounded-lg shadow-lg w-[400px] h-[400px] flex flex-col justify-between">
                       
                       {/* Header */}
-                      <h1 className="text-2xl font-semibold text-center text-gray-800 mb-5">Hi {userData.lname}, {userData.fname}</h1>
+                      <h1 className="text-2xl font-semibold text-center text-gray-800 mb-5">Hi {userData?.lname}, {userData?.fname}</h1>
               
                       {/* Warning Icon */}
                       <div className="flex justify-center">

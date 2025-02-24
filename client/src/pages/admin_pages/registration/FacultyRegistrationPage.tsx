@@ -5,16 +5,16 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
-    const [facultyid, setID] = useState()
-    const [fname, setFirstName] = useState()
-    const [lname, setLastName] = useState()
-    const [phone, setPhone] = useState()
-    const [emailadd, setEmail] = useState()
-    const [birthday, setBirthday] = useState()
-    const [address, setAddress] = useState()
-    const [password, setPassword] = useState()
+    const [facultyid, setID] = useState<string>("");
+    const [fname, setFirstName] = useState<string>("");
+    const [lname, setLastName] = useState<string>("");
+    const [phone, setPhone] = useState<string>("");
+    const [emailadd, setEmail] = useState<string>("");
+    const [birthday, setBirthday] = useState<string>("");
+    const [address, setAddress] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         axios.post('http://localhost:3001/faculty', {facultyid, fname, lname, phone, emailadd,
                                                birthday, address, password
