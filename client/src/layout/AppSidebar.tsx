@@ -2,18 +2,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 
 // Assume these icons are imported from an icon library
-import {
-  BoxSelectIcon,
-  Calendar,
-  ChevronDownIcon,
-  GridIcon,
-  FlipHorizontal,
-  ListIcon,
-  PackageIcon,
-  PieChartIcon,
-  Plug2Icon,
-  TableIcon,
-  UserCircleIcon,
+import { 
+  LayoutDashboard, Wallet, Users, ClipboardCheck, 
+  CalendarCheck, GraduationCap, BookOpen, UploadCloud, 
+  ChevronDown, ChevronUp, Building , UserPlus
 } from "lucide-react";
 import { useSidebar } from "../context/SidebarContext";
 import { PageIcon } from "../icons";
@@ -27,69 +19,57 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    icon: <GridIcon />,
+    icon: <LayoutDashboard />,
     name: "Dashboard",
-    subItems: [{ name: "Ecommerce", path: "/", pro: false }],
+     path: "/admin/dashboard",
   },
   {
-    icon: <Calendar />,
-    name: "Calendar",
-    path: "/calendar",
+    name: "Users",
+    icon: <Users />,
+    subItems: [
+      { name: "Cashier", path: "/admin/cashier", pro: false },
+      { name: "Faculty", path: "/admin/faculty", pro: false },
+      { name: "Students", path: "/admin/students", pro: false },
+    ],
   },
   {
-    icon: <UserCircleIcon />,
-    name: "User Profile",
+    name: "Registration",
+    icon: <UserPlus />,
+    subItems: [
+      { name: "Cashier", path: "/admin/cashier_registration", pro: false },
+      { name: "Faculty", path: "/admin/faculty_registration", pro: false },
+      { name: "Students", path: "/admin/students_registration", pro: false },
+    ],
+  },
+  {
+    icon: <CalendarCheck />,
+    name: "Schedule",
     path: "/profile",
   },
   {
-    name: "Forms",
-    icon: <ListIcon />,
-    subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+    icon: <BookOpen />,
+    name: "Subject",
+    path: "/admin/subjects",
   },
   {
-    name: "Tables",
-    icon: <TableIcon />,
-    subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
+    icon: <GraduationCap />,
+    name: "Courses",
+    path: "/admin/programs",
   },
   {
-    name: "Pages",
-    icon: <PackageIcon />,
-    subItems: [
-      { name: "Blank Page", path: "/blank", pro: false },
-      { name: "404 Error", path: "/error-404", pro: false },
-    ],
+    icon: <Building />,
+    name: "Departments",
+    path: "/admin/departments",
+  },
+  {
+    icon: <UploadCloud />,
+    name: "Bulk Upload",
+    path: "/profile",
   },
 ];
 
 const othersItems: NavItem[] = [
-  {
-    icon: <PieChartIcon />,
-    name: "Charts",
-    subItems: [
-      { name: "Line Chart", path: "/line-chart", pro: false },
-      { name: "Bar Chart", path: "/bar-chart", pro: false },
-    ],
-  },
-  {
-    icon: <BoxSelectIcon />,
-    name: "UI Elements",
-    subItems: [
-      { name: "Alerts", path: "/alerts", pro: false },
-      { name: "Avatar", path: "/avatars", pro: false },
-      { name: "Badge", path: "/badge", pro: false },
-      { name: "Buttons", path: "/buttons", pro: false },
-      { name: "Images", path: "/images", pro: false },
-      { name: "Videos", path: "/videos", pro: false },
-    ],
-  },
-  {
-    icon: <FlipHorizontal />,
-    name: "Authentication",
-    subItems: [
-      { name: "Sign In", path: "/signin", pro: false },
-      { name: "Sign Up", path: "/signup", pro: false },
-    ],
-  },
+ 
 ];
 
 const AppSidebar: React.FC = () => {
@@ -190,7 +170,7 @@ const AppSidebar: React.FC = () => {
                 <span className="menu-item-text">{nav.name}</span>
               )}
               {(isExpanded || isHovered || isMobileOpen) && (
-                <ChevronDownIcon
+                <ChevronDown
                   className={`ml-auto w-5 h-5 transition-transform duration-200 ${
                     openSubmenu?.type === menuType &&
                     openSubmenu?.index === index
@@ -345,26 +325,10 @@ const AppSidebar: React.FC = () => {
                 {isExpanded || isHovered || isMobileOpen ? (
                   "Menu"
                 ) : (
-                  <Plug2Icon className="size-6" />
+                  <ChevronUp className="size-6" />
                 )}
               </h2>
               {renderMenuItems(navItems, "main")}
-            </div>
-            <div className="">
-              <h2
-                className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
-                  !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
-                }`}
-              >
-                {isExpanded || isHovered || isMobileOpen ? (
-                  "Others"
-                ) : (
-                  <Plug2Icon />
-                )}
-              </h2>
-              {renderMenuItems(othersItems, "others")}
             </div>
           </div>
         </nav>

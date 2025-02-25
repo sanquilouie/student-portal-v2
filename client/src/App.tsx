@@ -24,7 +24,7 @@ import FacultyHomePage from './pages/faculty_pages/HomePage';
 import CashierHomePage from './pages/cashier_pages/HomePage';
 
 // Admin Imports
-import AdminDashboard from './pages/Dashboard/Home';
+import AdminDashboard from './pages/admin_pages/Dashboard';
 import AdminCashierPage from './pages/admin_pages/users/CashierPage';
 import AdminFacultyPage from './pages/admin_pages/users/FacultyPage';
 import AdminStudentsPage from './pages/admin_pages/users/StudentsPage';
