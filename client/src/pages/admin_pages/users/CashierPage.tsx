@@ -1,112 +1,225 @@
-import { useEffect, useState } from "react";
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-interface Cashier {
-    _id: string;
-    cashierid: string;
-    fname: string;
-    lname: string;
-    emailadd: string;
-    phone: string;
-    birthday: string;
-    address: string;
-}
-
-
-const FacultyPage = () => {
-    const [cashiers, setCashier] = useState<Cashier[]>([]);
-
-    useEffect(() => {
-        axios.get("http://localhost:3001/api/getcashier") // Fetch from backend
-            .then((response) => setCashier(response.data))
-            .catch((error) => console.error("Error fetching cashier list:", error));
-    }, []);
-
-    const handleDelete = (id: string) => {
-        const toastId = toast(
-          ({ closeToast }) => (
-            <div className="rounded-lg bg-white relative max-w-sm mx-auto">
-              <div className="p-6 pt-0 text-center">
-                <svg
-                  className="w-20 h-20 text-red-600 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <h3 className="text-xl font-normal text-gray-500 mt-5 mb-6">
-                  Are you sure you want to delete this subject?
-                </h3>
-                <button
-                  className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2"
-                  onClick={() => {
-                    console.log(`Deleted student with ID: ${id}`);
-                    toast.dismiss(toastId);
-                    // Call API to delete the student here
-                  }}
-                >
-                  Yes, I'm sure
-                </button>
-                <button
-                  className="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
-                  onClick={() => toast.dismiss(toastId)}
-                >
-                  No, cancel
-                </button>
-              </div>
-            </div>
-          ),
-          { autoClose: false }
-        );
-      };
-
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHeader,
+    TableRow,
+  } from "../../../components/ui/table";
+  
+  import Badge from "../../../components/ui/badge/Badge";
+  
+  interface Order {
+    id: number;
+    user: {
+      image: string;
+      name: string;
+      role: string;
+    };
+    projectName: string;
+    team: {
+      images: string[];
+    };
+    status: string;
+    budget: string;
+  }
+  
+  // Define the table data using the interface
+  const tableData: Order[] = [
+    {
+      id: 1,
+      user: {
+        image: "/images/user/user-17.jpg",
+        name: "Lindsey Curtis",
+        role: "Web Designer",
+      },
+      projectName: "Agency Website",
+      team: {
+        images: [
+          "/images/user/user-22.jpg",
+          "/images/user/user-23.jpg",
+          "/images/user/user-24.jpg",
+        ],
+      },
+      budget: "3.9K",
+      status: "Active",
+    },
+    {
+      id: 2,
+      user: {
+        image: "/images/user/user-18.jpg",
+        name: "Kaiya George",
+        role: "Project Manager",
+      },
+      projectName: "Technology",
+      team: {
+        images: ["/images/user/user-25.jpg", "/images/user/user-26.jpg"],
+      },
+      budget: "24.9K",
+      status: "Pending",
+    },
+    {
+      id: 3,
+      user: {
+        image: "/images/user/user-17.jpg",
+        name: "Zain Geidt",
+        role: "Content Writing",
+      },
+      projectName: "Blog Writing",
+      team: {
+        images: ["/images/user/user-27.jpg"],
+      },
+      budget: "12.7K",
+      status: "Active",
+    },
+    {
+      id: 4,
+      user: {
+        image: "/images/user/user-20.jpg",
+        name: "Abram Schleifer",
+        role: "Digital Marketer",
+      },
+      projectName: "Social Media",
+      team: {
+        images: [
+          "/images/user/user-28.jpg",
+          "/images/user/user-29.jpg",
+          "/images/user/user-30.jpg",
+        ],
+      },
+      budget: "2.8K",
+      status: "Cancel",
+    },
+    {
+      id: 5,
+      user: {
+        image: "/images/user/user-21.jpg",
+        name: "Carla George",
+        role: "Front-end Developer",
+      },
+      projectName: "Website",
+      team: {
+        images: [
+          "/images/user/user-31.jpg",
+          "/images/user/user-32.jpg",
+          "/images/user/user-33.jpg",
+        ],
+      },
+      budget: "4.5K",
+      status: "Active",
+    },
+  ];
+  
+  export default function BasicTableOne() {
     return (
-        <div>
-            <table className="min-w-full divide-y divide-gray-200">
-                <thead>
-                    <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cashier ID</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Birthday</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                    {cashiers.map((cashier) => (
-                        <tr key={cashier._id}>
-                            <td className="px-6 py-4 whitespace-nowrap">{cashier.cashierid}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{cashier.fname}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{cashier.lname}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{cashier.emailadd}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{cashier.phone}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{cashier.birthday}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{cashier.address}</td>
-
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <button className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500">Edit</button>
-                                <button className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500"
-                                onClick={() => handleDelete(cashier.cashierid)}
-                                >Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+        <div className="max-w-full overflow-x-auto">
+          <div className="min-w-[1102px]">
+            <Table>
+              {/* Table Header */}
+              <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
+                <TableRow>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  >
+                    User
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  >
+                    Project Name
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  >
+                    Team
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  >
+                    Status
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  >
+                    Budget
+                  </TableCell>
+                </TableRow>
+              </TableHeader>
+  
+              {/* Table Body */}
+              <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
+                {tableData.map((order) => (
+                  <TableRow key={order.id}>
+                    <TableCell className="px-5 py-4 sm:px-6 text-start">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 overflow-hidden rounded-full">
+                          <img
+                            width={40}
+                            height={40}
+                            src={order.user.image}
+                            alt={order.user.name}
+                          />
+                        </div>
+                        <div>
+                          <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                            {order.user.name}
+                          </span>
+                          <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
+                            {order.user.role}
+                          </span>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                      {order.projectName}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                      <div className="flex -space-x-2">
+                        {order.team.images.map((teamImage, index) => (
+                          <div
+                            key={index}
+                            className="w-6 h-6 overflow-hidden border-2 border-white rounded-full dark:border-gray-900"
+                          >
+                            <img
+                              width={24}
+                              height={24}
+                              src={teamImage}
+                              alt={`Team member ${index + 1}`}
+                              className="w-full size-6"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                      <Badge
+                        size="sm"
+                        color={
+                          order.status === "Active"
+                            ? "success"
+                            : order.status === "Pending"
+                            ? "warning"
+                            : "error"
+                        }
+                      >
+                        {order.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {order.budget}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
-      )
-}
-
-export default FacultyPage
+      </div>
+    );
+  }
+  
