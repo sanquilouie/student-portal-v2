@@ -11,6 +11,7 @@ const ProgramModel = require('./models/Programs')
 const FacultyModel = require('./models/FacultyUsers')
 const CashierModel = require('./models/CashierUsers')
 const StudentModel = require('./models/StudentUsers');
+const logger = require("./logger");
 
 const app = express()
 app.use(express.json())
@@ -37,7 +38,7 @@ app.post('/students', async (req, res) => {
         const newUser = await UserModel.create({ userid: studentid, role: "Student" });
         const newStudent = await StudentModel.create({ studentid, fname, lname, phone, emailadd,
             birthday, address, course, year, section });
-
+        logger.info(`New Student created: ${studentid}`);
         res.status(201).json({ message: "Student registered successfully", newUser, newStudent });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -50,7 +51,7 @@ app.post('/cashier', async (req, res) => {
     try {
         const newUser = await UserModel.create({ userid: cashierid, role: "Cashier", password: password });
         const newCashier = await CashierModel.create({ cashierid, fname, lname, phone, emailadd, birthday, address });
-
+        logger.info(`New Cashier created: ${cashierid}`);
         res.status(201).json({ message: "Cashier registered successfully", newUser, newCashier });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -62,7 +63,7 @@ app.post('/faculty', async (req, res) => {
     try {
         const newUser = await UserModel.create({ userid: facultyid, role: "Faculty", password: password });
         const newFaculty = await FacultyModel.create({ facultyid, fname, lname, phone, emailadd, birthday, address });
-
+        logger.info(`New Faculty Member created: ${facultyid}`);
         res.status(201).json({ message: "Faculty registered successfully", newUser, newFaculty });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -76,7 +77,7 @@ app.post('/post_subjects', async (req, res) => {
 
     try {
         const newSubject = await SubjectModel.create({ subjectcode, subjectname, units, semester, yearlevel });
-
+        logger.info(`New Subject created: ${subjectcode}`);
         res.status(201).json({ message: "Subject registered successfully", newSubject });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -88,7 +89,7 @@ app.post('/post_programs', async (req, res) => {
 
     try {
         const newProgram = await ProgramModel.create({ program_code, program_name, duration_years, total_units, department_code });
-
+        logger.info(`New Program created: ${program_code}`);
         res.status(201).json({ message: "Program registered successfully", newProgram });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -100,8 +101,8 @@ app.post('/post_departments', async (req, res) => {
 
     try {
         const newDepartment = await DepartmentModel.create({ department_code, department_name, dean, contact_email, contact_phone });
-
-        res.status(201).json({ message: "Department registered successfully", newDepartment });
+        logger.info(`New Department created: ${newDepartment}`);
+        res.status(201).json({ message: "Department registered successfully", department_code });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -211,6 +212,7 @@ app.post("/logout", (req, res) => {
         if (err) {
             return res.status(500).json({ message: "Failed to log out" });
         }
+        logger.info(`User logged out: ${req.body.email}`);
         res.json({ message: "Logged out" });
     });
 });
@@ -244,6 +246,7 @@ app.post("/login", (req, res) => {
             if (user) {
                 req.session.user = { studentid: user.studentid };
                 req.session.save(() => {
+                    logger.info(`User logged in: ${user.studentid}`);
                     res.json({ status: "Success", user: req.session.user });
                 });
             } else {
@@ -323,9 +326,11 @@ app.post("/faculty_login", (req, res) => {
                 if (isMatch) {
                     req.session.user = { userid: user.userid };
                     req.session.save(() => {
+                        logger.info(`User logged in: ${user.userid}`);
                         res.json({ status: "Success", user: req.session.user });
                     });
                 } else {
+                    logger.warn(`Failed login attempt for ${user.userid}`);
                     res.json({ status: "Invalid password"});
                 }
             });
@@ -355,9 +360,11 @@ app.post("/cashier_login", (req, res) => {
                 if (isMatch) {
                     req.session.user = { userid: user.userid };
                     req.session.save(() => {
+                        logger.info(`User logged in: ${user.userid}`);
                         res.json({ status: "Success", user: req.session.user });
                     });
                 } else {
+                    logger.warn(`Failed login attempt for ${user.userid}`);
                     res.json({ status: "Invalid password" });
                 }
             });
@@ -387,9 +394,11 @@ app.post("/admin_login", (req, res) => {
                 if (isMatch) {
                     req.session.user = { userid: user.userid };
                     req.session.save(() => {
+                        logger.info(`User logged in: ${user.userid}`);
                         res.json({ status: "Success", user: req.session.user });
                     });
                 } else {
+                    logger.warn(`Failed login attempt for ${user.userid}`);
                     res.json({ status: "Invalid password" });
                 }
             });

@@ -1,0 +1,4 @@
+{"level":"info","message":"User logged in: F1111"}
+{"level":"warn","message":"Failed login attempt for 9999"}
+{"level":"info","message":"User logged in: 9999"}
+{"level":"info","message":"New Cashier created: C5555"}

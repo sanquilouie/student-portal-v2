@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router";
 import { 
   LayoutDashboard, Wallet, Users, ClipboardCheck, 
   CalendarCheck, GraduationCap, BookOpen, UploadCloud, 
-  ChevronDown, ChevronUp, Building , UserPlus
+  ChevronDown, ChevronUp, Building , UserPlus, Logs
 } from "lucide-react";
 import { useSidebar } from "../context/SidebarContext";
 import { PageIcon } from "../icons";
@@ -65,6 +65,11 @@ const navItems: NavItem[] = [
     icon: <UploadCloud />,
     name: "Bulk Upload",
     path: "/profile",
+  },
+  {
+    icon: <Logs />,
+    name: "Logs",
+    path: "/logs",
   },
 ];
 
