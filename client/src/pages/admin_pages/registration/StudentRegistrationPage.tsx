@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageBreadcrumb from "../../../components/common/PageBreadCrumb";
 
 function Signup() {
     const [studentid, setID] = useState<string>("");
@@ -53,13 +54,15 @@ function Signup() {
     };
 
     return (
+        <>
+        <PageBreadcrumb pageTitle="Student Registration" />
         <div className="flex justify-center pt-20">
             <div className="mx-auto">
                 <form onSubmit={handleSubmit}>
                 <div className="-mx-3 flex flex-wrap">
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="studentid" className="mb-3 block text-base font-medium text-[#07074D]">
+                            <label htmlFor="studentid" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                                 Student ID
                             </label>
                             <input type="text" name="studentid" id="studentid" placeholder="Student ID" value={studentid}
@@ -70,7 +73,7 @@ function Signup() {
                     </div>
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="firstname" className="mb-3 block text-base font-medium text-[#07074D]">
+                            <label htmlFor="firstname" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                                 First Name
                             </label>
                             <input type="text" name="firstname" id="firstname" placeholder="First Name" value={fname}
@@ -81,7 +84,7 @@ function Signup() {
                     </div>
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="lastname" className="mb-3 block text-base font-medium text-[#07074D]">
+                            <label htmlFor="lastname" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                                 Last Name
                             </label>
                             <input type="text" name="lastname" id="lastname" placeholder="Last Name" value={lname}
@@ -94,7 +97,7 @@ function Signup() {
                 <div className="-mx-3 flex flex-wrap">
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="phone" className="mb-3 block text-base font-medium text-[#07074D]">
+                            <label htmlFor="phone" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                                 Phone Number
                             </label>
                             <input type="text" name="phone" id="phone" placeholder="Enter your phone number" value={phone}
@@ -105,7 +108,7 @@ function Signup() {
                     </div>
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="email" className="mb-3 block text-base font-medium text-[#07074D]">
+                            <label htmlFor="email" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                                 Email Address
                             </label>
                             <input type="email" name="email" id="email" placeholder="Enter your email" value={emailadd}
@@ -116,7 +119,7 @@ function Signup() {
                     </div>
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="date" className="mb-3 block text-base font-medium text-[#07074D]">
+                            <label htmlFor="date" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                                 Birth Date
                             </label>
                             <input type="date" name="date" id="date" value={birthday}
@@ -127,7 +130,7 @@ function Signup() {
                     </div>
                 </div>
                 <div className="mb-5">
-                    <label htmlFor="address" className="mb-3 block text-base font-medium text-[#07074D]">
+                    <label htmlFor="address" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                         Full Address
                     </label>
                     <input type="text" name="address" id="address" placeholder="Full Address" value={address}
@@ -138,7 +141,7 @@ function Signup() {
                 <div className="-mx-3 flex flex-wrap">
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="course" className="mb-3 block text-base font-medium text-[#07074D]">
+                            <label htmlFor="course" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                                 Course
                             </label>
                             <input type="text" name="course" id="course" placeholder="Enter your course" value={course}
@@ -149,7 +152,7 @@ function Signup() {
                     </div>
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="year" className="mb-3 block text-base font-medium text-[#07074D]">
+                            <label htmlFor="year" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                                 Year
                             </label>
                             <input type="text" name="year" id="year" placeholder="Enter your year" value={year}
@@ -160,7 +163,7 @@ function Signup() {
                     </div>
                     <div className="w-full px-3 sm:w-1/3">
                         <div className="mb-5">
-                            <label htmlFor="section" className="mb-3 block text-base font-medium text-[#07074D]">
+                            <label htmlFor="section" className="mb-3 block text-base font-medium text-gray-800 dark:text-white/90">
                                 Section
                             </label>
                             <input type="text" name="section" id="section" placeholder="Enter your section" value={section}
@@ -179,6 +182,7 @@ function Signup() {
                 </form>
             </div>
         </div>
+        </>
     );
 }
 

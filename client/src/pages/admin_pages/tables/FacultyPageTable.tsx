@@ -10,32 +10,34 @@ import {
   import axios from 'axios';
   import { toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
-
-interface Cashier {
-    _id: string;
-    cashierid: string;
-    fname: string;
-    lname: string;
-    emailadd: string;
-    phone: string;
-    birthday: string;
-    address: string;
-}
+  
+  interface Faculty {
+      _id: string;
+      facultyid: string;
+      fname: string;
+      lname: string;
+      emailadd: string;
+      phone: string;
+      birthday: string;
+      address: string;
+  }
+  
   
   export default function BasicTableOne() {
-    const [cashiers, setCashier] = useState<Cashier[]>([]);
+    const [faculties, setFaculty] = useState<Faculty[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const entriesPerPage = 5;
+
     useEffect(() => {
-        axios.get("http://localhost:3001/api/getcashier") // Fetch from backend
-            .then((response) => setCashier(response.data))
-            .catch((error) => console.error("Error fetching cashier list:", error));
+        axios.get("http://localhost:3001/api/getfaculty") // Fetch from backend
+            .then((response) => setFaculty(response.data))
+            .catch((error) => console.error("Error fetching faculty list:", error));
     }, []);
 
     // Pagination logic
-    const totalPages = Math.ceil(cashiers.length / entriesPerPage);
+    const totalPages = Math.ceil(faculties.length / entriesPerPage);
     const startIndex = (currentPage - 1) * entriesPerPage;
-    const paginatedCashiers = cashiers.slice(startIndex, startIndex + entriesPerPage);
+    const paginatedFaculty = faculties.slice(startIndex, startIndex + entriesPerPage);
 
     const nextPage = () => {
         if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -101,7 +103,7 @@ interface Cashier {
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                   >
-                    Cashier ID
+                    Faculty ID
                   </TableCell>
                   <TableCell
                     isHeader
@@ -150,32 +152,32 @@ interface Cashier {
   
               {/* Table Body */}
               <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                {paginatedCashiers.map((cashier) => (
-                  <TableRow key={cashier._id}>
+                {paginatedFaculty.map((faculty) => (
+                  <TableRow key={faculty._id}>
                     <TableCell className="px-5 py-4 sm:px-6 text-start">
                       <div className="flex items-center gap-3">
                           <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                            {cashier.cashierid}
+                            {faculty.facultyid}
                           </span>
                       </div>
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                      {cashier.fname}
+                      {faculty.fname}
                     </TableCell>  
                     <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                      {cashier.lname}
+                      {faculty.lname}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                      {cashier.emailadd}
+                      {faculty.emailadd}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                      {cashier.phone}
+                      {faculty.phone}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                      {cashier.birthday}
+                      {faculty.birthday}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                      {cashier.address}
+                      {faculty.address}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -183,8 +185,8 @@ interface Cashier {
             </Table>
           </div>
         </div>
-         {/* Pagination Controls */}
-         <div className="flex justify-between items-center p-4">
+        {/* Pagination Controls */}
+        <div className="flex justify-between items-center p-4">
                 <button
                     className={`px-4 py-2 bg-gray-300 rounded ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""}`}
                     onClick={prevPage}

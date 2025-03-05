@@ -5,11 +5,9 @@ import BasicTableOne from "../tables/CashierPageTable";
 export default function BasicTables() {
   return (
     <>
-      <PageBreadcrumb pageTitle="Basic Tables" />
+      <PageBreadcrumb pageTitle="Cashier View" />
       <div className="space-y-6">
-        <ComponentCard title="Basic Table 1">
           <BasicTableOne />
-        </ComponentCard>
       </div>
     </>
   );
