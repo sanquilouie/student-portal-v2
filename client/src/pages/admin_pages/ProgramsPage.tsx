@@ -2,17 +2,11 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageBreadcrumb from "../../components/common/PageBreadCrumb";
+import ComponentCard from "../../components/common/ComponentCard";
+import BasicTableOne from "./tables/ProgramsPageTable";
 import AddProgramModal from "../../components/ProgramRegistrationModal";
 
-interface Program {
-    _id: string;
-    program_code: string;
-    program_name: string;
-    duration_years: number;
-    total_units: number;
-    department_code: string;
-  }
-  
 
 const ProgramsPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,35 +55,11 @@ const ProgramsPage = () => {
           { autoClose: false }
         );
       };
-
-    const [programs, setPrograms] = useState<Program[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const entriesPerPage = 5;
-
-    useEffect(() => {
-        axios.get("http://localhost:3001/api/getprograms") // Fetch from backend
-            .then((response) => setPrograms(response.data))
-            .catch((error) => console.error("Error fetching subjects:", error));
-    }, []);
-
-    // Pagination logic
-    const startIndex = (currentPage - 1) * entriesPerPage;
-    const paginatedPrograms = programs.slice(startIndex, startIndex + entriesPerPage);
-
-    const nextPage = () => {
-        if (startIndex + entriesPerPage < programs.length) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    const prevPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
+    
 
     return (
         <div>
+            <PageBreadcrumb pageTitle="Programs View" />
             <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center space-x-2">
                     <input 
@@ -106,74 +76,13 @@ const ProgramsPage = () => {
                     Add New Program
                 </button>
             </div>
-            <table className="min-w-full table-fixed divide-y divide-gray-200">
-                <thead>
-                    <tr>
-                        <th className="px-6 py-3 w-32 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Program Code</th>
-                        <th className="px-6 py-3 w-60 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Program Name</th>
-                        <th className="px-6 py-3 w-16 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Duration Years</th>
-                        <th className="px-6 py-3 w-24 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Total Units</th>
-                        <th className="px-6 py-3 w-24 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Department Code</th>
-                        <th className="px-6 py-3 w-48 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Action</th>
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                    {paginatedPrograms.map((program) => (
-                        <tr key={program._id}>
-                            <td className="px-6 py-4 w-16 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{program.program_code}</div>
-                            </td>
-                            <td className="px-6 py-4 w-80 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{program.program_name}</div>
-                            </td>
-                            <td className="px-6 py-4 w-16 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{program.duration_years}</div>
-                            </td>
-                            <td className="px-6 py-4 w-32 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{program.total_units}</div>
-                            </td>
-                            <td className="px-6 py-4 w-24 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{program.department_code}</div>
-                            </td>
-                            <td className="px-6 py-4 w-48 whitespace-nowrap">
-                                <button className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500">Edit</button>
-                                <button
-                                    className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500"
-                                    onClick={() => handleDelete(program.program_code)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            {/* Pagination Controls */}
-            <div className="flex justify-between mt-4">
-                <button 
-                    onClick={prevPage} 
-                    disabled={currentPage === 1}
-                    className={`px-4 py-2 font-medium text-white rounded-md ${currentPage === 1 ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-500"}`}
-                >
-                    Previous
-                </button>
-                <span className="text-gray-700">Page {currentPage}</span>
-                <button 
-                    onClick={nextPage} 
-                    disabled={startIndex + entriesPerPage >= programs.length}
-                    className={`px-4 py-2 font-medium text-white rounded-md ${startIndex + entriesPerPage >= programs.length ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-500"}`}
-                >
-                    Next
-                </button>
+            <div className="space-y-6">
+                <BasicTableOne />
             </div>
-            <AddProgramModal 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)}
-            />
-        </div>
-        
+            <AddProgramModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+        </div>  
     );
 }
 
 export default ProgramsPage
+

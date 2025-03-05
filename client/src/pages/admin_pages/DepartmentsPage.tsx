@@ -2,18 +2,13 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageBreadcrumb from "../../components/common/PageBreadCrumb";
+import ComponentCard from "../../components/common/ComponentCard";
+import BasicTableOne from "./tables/DepartmentsPageTable";
 import AddDepartmentModal from "../../components/DepartmentRegistrationModal";
 
-interface Department {
-    _id: string;
-    department_code: string;
-    department_name: string;
-    dean: string;
-    contact_email: string;
-    contact_phone: string;
-  }
 
-const DepartmentPage = () => {
+const DepartmentsPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleDelete = (id: string) => {
@@ -36,7 +31,7 @@ const DepartmentPage = () => {
                   ></path>
                 </svg>
                 <h3 className="text-xl font-normal text-gray-500 mt-5 mb-6">
-                  Are you sure you want to delete this subject?
+                  Are you sure you want to delete this department?
                 </h3>
                 <button
                   className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2"
@@ -60,35 +55,11 @@ const DepartmentPage = () => {
           { autoClose: false }
         );
       };
-
-      const [departments, setDepartments] = useState<Department[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const entriesPerPage = 5;
-
-    useEffect(() => {
-        axios.get("http://localhost:3001/api/getdepartments") // Fetch from backend
-            .then((response) => setDepartments(response.data))
-            .catch((error) => console.error("Error fetching departments:", error));
-    }, []);
-
-    // Pagination logic
-    const startIndex = (currentPage - 1) * entriesPerPage;
-    const paginatedDepartments = departments.slice(startIndex, startIndex + entriesPerPage);
-
-    const nextPage = () => {
-        if (startIndex + entriesPerPage < departments.length) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    const prevPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
+    
 
     return (
         <div>
+            <PageBreadcrumb pageTitle="Departments View" />
             <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center space-x-2">
                     <input 
@@ -105,73 +76,13 @@ const DepartmentPage = () => {
                     Add New Department
                 </button>
             </div>
-            <table className="min-w-full table-fixed divide-y divide-gray-200">
-                <thead>
-                    <tr>
-                        <th className="px-6 py-3 w-32 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Department Code</th>
-                        <th className="px-6 py-3 w-60 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Department Name</th>
-                        <th className="px-6 py-3 w-16 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Dean</th>
-                        <th className="px-6 py-3 w-24 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Contact Email</th>
-                        <th className="px-6 py-3 w-24 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Contact Phone</th>
-                        <th className="px-6 py-3 w-48 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Action</th>
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                    {paginatedDepartments.map((department) => (
-                        <tr key={department._id}>
-                            <td className="px-6 py-4 w-16 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{department.department_code}</div>
-                            </td>
-                            <td className="px-6 py-4 w-80 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{department.department_name}</div>
-                            </td>
-                            <td className="px-6 py-4 w-16 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{department.dean}</div>
-                            </td>
-                            <td className="px-6 py-4 w-32 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{department.contact_email}</div>
-                            </td>
-                            <td className="px-6 py-4 w-24 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{department.contact_phone}</div>
-                            </td>
-                            <td className="px-6 py-4 w-48 whitespace-nowrap">
-                                <button className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500">Edit</button>
-                                <button
-                                    className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500"
-                                    onClick={() => handleDelete(department.department_code)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            <div className="flex justify-between mt-4">
-                <button 
-                    onClick={prevPage} 
-                    disabled={currentPage === 1}
-                    className={`px-4 py-2 font-medium text-white rounded-md ${currentPage === 1 ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-500"}`}
-                >
-                    Previous
-                </button>
-                <span className="text-gray-700">Page {currentPage}</span>
-                <button 
-                    onClick={nextPage} 
-                    disabled={startIndex + entriesPerPage >= departments.length}
-                    className={`px-4 py-2 font-medium text-white rounded-md ${startIndex + entriesPerPage >= departments.length ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-500"}`}
-                >
-                    Next
-                </button>
+            <div className="space-y-6">
+                <BasicTableOne />
             </div>
-            <AddDepartmentModal 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)}
-            />
-        </div>
-        
+            <AddDepartmentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+        </div>  
     );
 }
 
-export default DepartmentPage
+export default DepartmentsPage
+

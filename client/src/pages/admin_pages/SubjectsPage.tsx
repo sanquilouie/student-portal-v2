@@ -2,16 +2,10 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageBreadcrumb from "../../components/common/PageBreadCrumb";
+import ComponentCard from "../../components/common/ComponentCard";
+import BasicTableOne from "./tables/SubjectsPageTable";
 import AddSubjectModal from "../../components/SubjectRegistrationModal";
-
-interface Subject {
-    _id: string;
-    subjectcode: string;
-    subjectname: string;
-    units: number;
-    semester: string;
-    yearlevel: string;
-}
 
 
 const SubjectsPage = () => {
@@ -63,34 +57,9 @@ const SubjectsPage = () => {
       };
     
 
-    const [subjects, setSubjects] = useState<Subject[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const entriesPerPage = 5;
-
-    useEffect(() => {
-        axios.get("http://localhost:3001/api/getsubjects") // Fetch from backend
-            .then((response) => setSubjects(response.data))
-            .catch((error) => console.error("Error fetching subjects:", error));
-    }, []);
-
-    // Pagination logic
-    const startIndex = (currentPage - 1) * entriesPerPage;
-    const paginatedSubjects = subjects.slice(startIndex, startIndex + entriesPerPage);
-
-    const nextPage = () => {
-        if (startIndex + entriesPerPage < subjects.length) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    const prevPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
-
     return (
         <div>
+            <PageBreadcrumb pageTitle="Subjects View" />
             <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center space-x-2">
                     <input 
@@ -107,74 +76,13 @@ const SubjectsPage = () => {
                     Add New Subject
                 </button>
             </div>
-            <table className="min-w-full table-fixed divide-y divide-gray-200">
-                <thead>
-                    <tr>
-                        <th className="px-6 py-3 w-32 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Subject Code</th>
-                        <th className="px-6 py-3 w-60 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Subject Name</th>
-                        <th className="px-6 py-3 w-16 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Units</th>
-                        <th className="px-6 py-3 w-24 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Semester</th>
-                        <th className="px-6 py-3 w-24 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Year Level</th>
-                        <th className="px-6 py-3 w-48 text-left text-xs font-medium text-gray-500 uppercase tracking-wider overflow-hidden text-ellipsis">Action</th>
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                    {paginatedSubjects.map((subject) => (
-                        <tr key={subject._id}>
-                            <td className="px-6 py-4 w-16 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{subject.subjectcode}</div>
-                            </td>
-                            <td className="px-6 py-4 w-80 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{subject.subjectname}</div>
-                            </td>
-                            <td className="px-6 py-4 w-16 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{subject.units}</div>
-                            </td>
-                            <td className="px-6 py-4 w-32 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{subject.semester}</div>
-                            </td>
-                            <td className="px-6 py-4 w-24 overflow-hidden text-ellipsis whitespace-nowrap">
-                                <div className="max-w-0">{subject.yearlevel}</div>
-                            </td>
-                            <td className="px-6 py-4 w-48 whitespace-nowrap">
-                                <button className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500">Edit</button>
-                                <button
-                                    className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500"
-                                    onClick={() => handleDelete(subject.subjectcode)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            {/* Pagination Controls */}
-            <div className="flex justify-between mt-4">
-                <button 
-                    onClick={prevPage} 
-                    disabled={currentPage === 1}
-                    className={`px-4 py-2 font-medium text-white rounded-md ${currentPage === 1 ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-500"}`}
-                >
-                    Previous
-                </button>
-                <span className="text-gray-700">Page {currentPage}</span>
-                <button 
-                    onClick={nextPage} 
-                    disabled={startIndex + entriesPerPage >= subjects.length}
-                    className={`px-4 py-2 font-medium text-white rounded-md ${startIndex + entriesPerPage >= subjects.length ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-500"}`}
-                >
-                    Next
-                </button>
+            <div className="space-y-6">
+                <BasicTableOne />
             </div>
-            <AddSubjectModal 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)}
-            />
-        </div>
-        
+            <AddSubjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+        </div>  
     );
 }
 
 export default SubjectsPage
+
