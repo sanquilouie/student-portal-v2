@@ -10,7 +10,18 @@ const StudentsSchema = new mongoose.Schema({
     address: String,
     course: String,
     year: String,
-    section: String
+    section: String,
+
+    // Add schedule as an array of objects
+    schedule: [
+        {
+        subjectName: String,
+        day: String,
+        startTime: String,
+        endTime: String,
+        teacher: String,
+        },
+    ],
 })
 
 const StudentModel = mongoose.model("students", StudentsSchema)

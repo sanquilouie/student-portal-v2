@@ -4,3 +4,13 @@
 {"level":"info","message":"New Subject created: 2334asd"}
 {"level":"info","message":"New Department created: {\n  department_code: 'asd',\n  department_name: 'asdsad',\n  dean: 'asd',\n  contact_email: 'asdsad',\n  contact_phone: 'asdsad',\n  _id: new ObjectId('67c8222eb4dfc916787a7685'),\n  __v: 0\n}"}
 {"level":"info","message":"New Department created: {\n  department_code: 'asd',\n  department_name: 'asd',\n  dean: 'asd',\n  contact_email: 'asd',\n  contact_phone: 'asd',\n  _id: new ObjectId('67c82240b4dfc916787a768a'),\n  __v: 0\n}"}
+{"level":"info","message":"User logged in: 9999"}
+{"level":"info","message":"User logged in: 9999"}
+{"level":"info","message":"User logged in: 9999"}
+{"level":"info","message":"New Student created: asd"}
+{"level":"info","message":"New Cashier created: asdsa"}
+{"level":"info","message":"New Cashier created: 123"}
+{"level":"info","message":"New Student created: 2123"}
+{"level":"info","message":"New Student created: asd"}
+{"level":"info","message":"New Student created: asd"}
+{"level":"info","message":"New Student created: 141414"}

@@ -35,7 +35,7 @@ app.post('/students', async (req, res) => {
         birthday, address, course, year, section } = req.body;
 
     try {
-        const newUser = await UserModel.create({ userid: studentid, role: "Student" });
+        const newUser = await UserModel.create({ userid: studentid, password: "defaultpassword", role: "Student" });
         const newStudent = await StudentModel.create({ studentid, fname, lname, phone, emailadd,
             birthday, address, course, year, section });
         logger.info(`New Student created: ${studentid}`);
@@ -101,7 +101,7 @@ app.post('/post_departments', async (req, res) => {
 
     try {
         const newDepartment = await DepartmentModel.create({ department_code, department_name, dean, contact_email, contact_phone });
-        logger.info(`New Department created: ${newDepartment}`);
+        logger.info(`New Department created: ${department_code}`);
         res.status(201).json({ message: "Department registered successfully", department_code });
     } catch (err) {
         res.status(500).json({ error: err.message });

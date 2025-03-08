@@ -35,6 +35,7 @@ import CashierRegistrationPage from './pages/admin_pages/registration/CashierReg
 import SubjectsPage from './pages/admin_pages/SubjectsPage';
 import ProgramsPage from './pages/admin_pages/ProgramsPage';
 import DepartmentsPage from './pages/admin_pages/DepartmentsPage';
+import AdminSchedulePage from './pages/admin_pages/Schedule';
 
 // Catch-All Imports
 import Layout from "./components/Layout";
@@ -63,6 +64,7 @@ const App: React.FC = () => {
           <Route path="/admin/subjects" element={<SubjectsPage />} />
           <Route path="/admin/programs" element={<ProgramsPage />} />
           <Route path="/admin/departments" element={<DepartmentsPage />} />
+          <Route path="/admin/schedule" element={<AdminSchedulePage />} />
         </Route>
 
         <Route element={<Layout />}>

@@ -44,7 +44,7 @@ const navItems: NavItem[] = [
   {
     icon: <CalendarCheck />,
     name: "Schedule",
-    path: "/profile",
+    path: "/admin/schedule",
   },
   {
     icon: <BookOpen />,

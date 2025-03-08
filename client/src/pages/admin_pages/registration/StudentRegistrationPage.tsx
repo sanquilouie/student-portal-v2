@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageBreadcrumb from "../../../components/common/PageBreadCrumb";
 
-function Signup() {
+function StudentRegistrationPage() {
     const [studentid, setID] = useState<string>("");
     const [fname, setFirstName] = useState<string>("");
     const [lname, setLastName] = useState<string>("");
@@ -186,4 +186,4 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default StudentRegistrationPage;
