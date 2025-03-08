@@ -22,7 +22,10 @@ const AdminLoginPage = () => {
         if (result.data.status === "Success") {
 =======
         if(result.data.status === "Success"){
+<<<<<<< HEAD:client/src/pages/login_pages/AdminLoginPage.tsx
 >>>>>>> 49c31b9 (changed admin dashboard link):client/src/pages/login_pages/AdminLoginPage.jsx
+=======
+>>>>>>> 49c31b94990ef206f2ac1717b93d5aadbfddfa59:client/src/pages/login_pages/AdminLoginPage.jsx
             navigate('/admin/dashboard');
         } else {
             alert(result.data.status);
