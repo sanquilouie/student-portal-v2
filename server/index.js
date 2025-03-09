@@ -73,14 +73,16 @@ app.post('/faculty', async (req, res) => {
 //***********//
 
 app.post('/post_subjects', async (req, res) => {
-    const { subjectcode, subjectname, units, semester, yearlevel } = req.body;
+    logger.info("asdsa", req.body);
+    const { subjectcode, subjectname, units, semester, yearlevel, day, startTime, endTime, faculty } = req.body;
 
     try {
-        const newSubject = await SubjectModel.create({ subjectcode, subjectname, units, semester, yearlevel });
-        logger.info(`New Subject created: ${subjectcode}`);
+        const newSubject = await SubjectModel.create({ subjectcode, subjectname, units, semester, yearlevel, day, startTime, endTime, faculty });
+        logger.info(`New Subject created: ${newSubject}`);
         res.status(201).json({ message: "Subject registered successfully", newSubject });
     } catch (err) {
         res.status(500).json({ error: err.message });
+        logger.info(`Error:`, err.message );
     }
 });
 
@@ -153,7 +155,7 @@ app.get("/api/getcashier", async (req, res) => {
 
 app.get("/api/getsubjects", async (req, res) => {
     try {
-        const subjects = await SubjectModel.find(); // Retrieve all subjects
+        const subjects = await SubjectModel.find().populate("faculty", "fname lname");
         res.json(subjects);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -405,6 +407,35 @@ app.post("/admin_login", (req, res) => {
         })
         .catch((err) => res.status(500).json({ error: err.message }));
 });
+
+    app.get("/teachers_search", async (req, res) => {
+        try {
+          const faculties = await FacultyModel.find({}, "fname lname _id"); // Fetch only needed fields
+          const formattedFaculties = faculties.map(faculty => ({
+            _id: faculty._id,
+            name: `${faculty.fname} ${faculty.lname}`, // Combine first & last name
+          }));
+          
+          res.json(formattedFaculties);
+        } catch (error) {
+          res.status(500).json({ message: "Error fetching teachers" });
+        }
+      });
+
+      app.put("/api/updatesubject/:id", async (req, res) => {
+        try {
+            const { id } = req.params;
+            const updatedData = req.body;
+    
+            await SubjectModel.findByIdAndUpdate(id, updatedData, { new: true });
+    
+            res.json({ message: "Subject updated successfully!" });
+        } catch (error) {
+            console.error("Error updating subject:", error);
+            res.status(500).json({ error: "Internal Server Error" });
+        }
+    });
+    
 
 app.listen(3001, () => {
     console.log("Server is running")

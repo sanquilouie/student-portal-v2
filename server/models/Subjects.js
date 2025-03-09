@@ -5,8 +5,12 @@ const SubjectsSchema = new mongoose.Schema({
     subjectname: String,
     units: String,
     semester: String,
-    yearlevel: String
-})
+    yearlevel: String,
+    day: [String],
+    startTime: String,
+    endTime: String,
+    faculty: { type: mongoose.Schema.Types.ObjectId, ref: "faculty" }
+});
 
 const SubjectsModel = mongoose.model("subjects", SubjectsSchema)
 module.exports = SubjectsModel

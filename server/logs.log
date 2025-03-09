@@ -15,3 +15,79 @@
 {"level":"info","message":"New Student created: asd"}
 {"level":"info","message":"New Student created: 141414"}
 {"level":"info","message":"User logged in: 9999"}
+{"level":"info","message":"User logged in: 9999"}
+{"level":"info","message":"New Subject created: "}
+{"level":"info","message":"New Subject created: "}
+{"level":"info","message":"New Subject created: aasd"}
+{"level":"info","message":"New Subject created: test"}
+{"level":"info","message":"New Subject created: test"}
+{"level":"info","message":"New Subject created: test"}
+{"level":"info","message":"New Subject created: CS101"}
+{"level":"info","message":"New Subject created: CS101"}
+{"level":"info","message":"New Subject created: CS101"}
+{"level":"info","message":"New Subject created: CS101"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'CS101',\n  subjectname: 'Introduction to Computer Science',\n  units: '3',\n  semester: '1st',\n  yearlevel: '1st Year',\n  day: 'Monday, Wednesday, Friday',\n  startTime: '08:00 AM',\n  endTime: '10:00 AM',\n  _id: new ObjectId('67cc6ec4b859ba72b6bbfe5d'),\n  __v: 0\n}"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'CS101',\n  subjectname: 'Introduction to Computer Science',\n  units: '3',\n  semester: '1st',\n  yearlevel: '1st Year',\n  day: 'Monday, Wednesday, Friday',\n  startTime: '08:00 AM',\n  endTime: '10:00 AM',\n  _id: new ObjectId('67cc6ed2b859ba72b6bbfe60'),\n  __v: 0\n}"}
+{"level":"info","message":"New Subject created: CS101"}
+{"level":"info","message":"New Subject created: CS101"}
+{"level":"info","message":"New Subject created: CS101"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'CS101',\n  subjectname: 'Introduction to Computer Science',\n  units: '3',\n  semester: '1st',\n  yearlevel: '1st Year',\n  day: 'Monday, Wednesday, Friday',\n  startTime: '08:00 AM',\n  endTime: '10:00 AM',\n  _id: new ObjectId('67cc72b5acaba283470701c9'),\n  __v: 0\n}"}
+{"level":"info","message":"New Subject created: [object Object]"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'CS101',\n  subjectname: 'Introduction to Computer Science',\n  units: '3',\n  semester: '1st',\n  yearlevel: '1st Year',\n  day: 'Monday, Wednesday, Friday',\n  startTime: '08:00 AM',\n  endTime: '10:00 AM',\n  _id: new ObjectId('67cc7345c14755dff9f28676'),\n  __v: 0\n}"}
+{"level":"info","message":{"day":"Monday, Wednesday, Friday","endTime":"10:00 AM","semester":"1st","startTime":"08:00 AM","subjectcode":"CS101","subjectname":"Introduction to Computer Science","teacher":"65a1234567890abcdef12345","units":"3","yearlevel":"1st Year"}}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'CS101',\n  subjectname: 'Introduction to Computer Science',\n  units: '3',\n  semester: '1st',\n  yearlevel: '1st Year',\n  day: 'Monday, Wednesday, Friday',\n  startTime: '08:00 AM',\n  endTime: '10:00 AM',\n  _id: new ObjectId('67cc735c0d89b882a014d583'),\n  __v: 0\n}"}
+{"day":"Monday, Wednesday, Friday","endTime":"10:00 AM","level":"info","message":"asdsa","semester":"1st","startTime":"08:00 AM","subjectcode":"CS101","subjectname":"Introduction to Computer Science","teacher":"65a1234567890abcdef12345","units":"3","yearlevel":"1st Year"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'CS101',\n  subjectname: 'Introduction to Computer Science',\n  units: '3',\n  semester: '1st',\n  yearlevel: '1st Year',\n  day: 'Monday, Wednesday, Friday',\n  startTime: '08:00 AM',\n  endTime: '10:00 AM',\n  _id: new ObjectId('67cc737ff0b3c41a34574634'),\n  __v: 0\n}"}
+{"day":"Monday, Wednesday, Friday","endTime":"10:00 AM","level":"info","message":"asdsa","semester":"1st","startTime":"08:00 AM","subjectcode":"CS101","subjectname":"Introduction to Computer Science","teacher":"65a1234567890abcdef12345","units":"3","yearlevel":"1st Year"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'CS101',\n  subjectname: 'Introduction to Computer Science',\n  units: '3',\n  semester: '1st',\n  yearlevel: '1st Year',\n  day: 'Monday, Wednesday, Friday',\n  startTime: '08:00 AM',\n  endTime: '10:00 AM',\n  _id: new ObjectId('67cc7404f0b3c41a34574638'),\n  __v: 0\n}"}
+{"day":"Monday, Wednesday, Friday","endTime":"10:00 AM","faculty":"65a1234567890abcdef12345","level":"info","message":"asdsa","semester":"1st","startTime":"08:00 AM","subjectcode":"CS101","subjectname":"Introduction to Computer Science","units":"3","yearlevel":"1st Year"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'CS101',\n  subjectname: 'Introduction to Computer Science',\n  units: '3',\n  semester: '1st',\n  yearlevel: '1st Year',\n  day: 'Monday, Wednesday, Friday',\n  startTime: '08:00 AM',\n  endTime: '10:00 AM',\n  faculty: new ObjectId('65a1234567890abcdef12345'),\n  _id: new ObjectId('67cc7491e90106ac765ced14'),\n  __v: 0\n}"}
+{"day":["Monday","Tuesday"],"endTime":"15:00","faculty":[{"label":"Sui Coon","value":"67b4327018afc9fa17812162"},{"label":"Pika Chu","value":"67b4328518afc9fa17812166"},{"label":"Psy Duck","value":"67b4348125fefce67833a84b"},{"label":"Rai Chu","value":"67bb3edc46532183b813166b"}],"level":"info","message":"asdsa","semester":"1","startTime":"14:00","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"day":["Tuesday","Monday"],"endTime":"03:00","faculty":[{"label":"Sui Coon","value":"67b4327018afc9fa17812162"},{"label":"Pika Chu","value":"67b4328518afc9fa17812166"},{"label":"Psy Duck","value":"67b4348125fefce67833a84b"},{"label":"Rai Chu","value":"67bb3edc46532183b813166b"}],"level":"info","message":"asdsa","semester":"1","startTime":"02:00","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":["Monday","Tuesday"],"endTime":"14:02","faculty":[{"label":"Sui Coon","value":"67b4327018afc9fa17812162"},{"label":"Pika Chu","value":"67b4328518afc9fa17812166"},{"label":"Psy Duck","value":"67b4348125fefce67833a84b"},{"label":"Rai Chu","value":"67bb3edc46532183b813166b"}],"level":"info","message":"asdsa","semester":"1","startTime":"14:02","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":["Monday","Tuesday"],"endTime":"14:02","faculty":[{"label":"Sui Coon","value":"67b4327018afc9fa17812162"},{"label":"Pika Chu","value":"67b4328518afc9fa17812166"},{"label":"Psy Duck","value":"67b4348125fefce67833a84b"},{"label":"Rai Chu","value":"67bb3edc46532183b813166b"}],"level":"info","message":"asdsa","semester":"1","startTime":"14:02","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":["Monday","Tuesday"],"endTime":"14:02","faculty":[{"label":"Sui Coon","value":"67b4327018afc9fa17812162"},{"label":"Pika Chu","value":"67b4328518afc9fa17812166"},{"label":"Psy Duck","value":"67b4348125fefce67833a84b"},{"label":"Rai Chu","value":"67bb3edc46532183b813166b"}],"level":"info","message":"asdsa","semester":"1","startTime":"14:02","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":["Monday","Tuesday"],"endTime":"14:02","faculty":[{"label":"Sui Coon","value":"67b4327018afc9fa17812162"},{"label":"Pika Chu","value":"67b4328518afc9fa17812166"},{"label":"Psy Duck","value":"67b4348125fefce67833a84b"},{"label":"Rai Chu","value":"67bb3edc46532183b813166b"}],"level":"info","message":"asdsa","semester":"1","startTime":"14:02","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":["Monday","Tuesday"],"endTime":"14:02","faculty":[{"label":"Sui Coon","value":"67b4327018afc9fa17812162"},{"label":"Pika Chu","value":"67b4328518afc9fa17812166"},{"label":"Psy Duck","value":"67b4348125fefce67833a84b"},{"label":"Rai Chu","value":"67bb3edc46532183b813166b"}],"level":"info","message":"asdsa","semester":"1","startTime":"14:02","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":["Monday","Tuesday"],"endTime":"14:02","level":"info","message":"asdsa","selectedFaculty":"67b4327018afc9fa17812162","semester":"1","startTime":"14:02","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":["Monday","Wednesday"],"endTime":"14:22","faculty":"67bb3edc46532183b813166b","level":"info","message":"asdsa","semester":"1","startTime":"11:11","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":"Monday, Wednesday, Friday","endTime":"10:00 AM","faculty":"65a1234567890abcdef12345","level":"info","message":"asdsa","semester":"1st","startTime":"08:00 AM","subjectcode":"CS101","subjectname":"Introduction to Computer Science","units":"3","yearlevel":"1st Year"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'CS101',\n  subjectname: 'Introduction to Computer Science',\n  units: '3',\n  semester: '1st',\n  yearlevel: '1st Year',\n  day: 'Monday, Wednesday, Friday',\n  startTime: '08:00 AM',\n  endTime: '10:00 AM',\n  faculty: new ObjectId('65a1234567890abcdef12345'),\n  _id: new ObjectId('67cc788b69ae651873eba843'),\n  __v: 0\n}"}
+{"level":"info","message":"asdsa","semester":"1","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'test',\n  subjectname: 'test',\n  units: '1',\n  semester: '1',\n  yearlevel: '1',\n  _id: new ObjectId('67cc78a669ae651873eba848'),\n  __v: 0\n}"}
+{"day":[],"endTime":"","level":"info","message":"asdsa","semester":"","startTime":"","subjectcode":"","subjectname":"","units":"","yearlevel":""}
+{"level":"info","message":"Error:"}
+{"day":[],"endTime":"","level":"info","message":"asdsa","semester":"","startTime":"","subjectcode":"","subjectname":"","units":"","yearlevel":""}
+{"level":"info","message":"Error:"}
+{"day":["Monday"],"endTime":"14:22","level":"info","message":"asdsa","semester":"1","startTime":"11:11","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":["Monday"],"level":"info","message":"asdsa","semester":"1","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"level":"info","message":"asdsa","semester":"1","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'test',\n  subjectname: 'test',\n  units: '1',\n  semester: '1',\n  yearlevel: '1',\n  _id: new ObjectId('67cc78fc69ae651873eba85b'),\n  __v: 0\n}"}
+{"level":"info","message":"asdsa","semester":"","startTime":"","subjectcode":"","subjectname":"","units":"","yearlevel":""}
+{"level":"info","message":"New Subject created: {\n  subjectcode: '',\n  subjectname: '',\n  units: '',\n  semester: '',\n  yearlevel: '',\n  startTime: '',\n  _id: new ObjectId('67cc790669ae651873eba860'),\n  __v: 0\n}"}
+{"endTime":"","faculty":"","level":"info","message":"asdsa","semester":"","startTime":"","subjectcode":"","subjectname":"","units":"","yearlevel":""}
+{"level":"info","message":"Error:"}
+{"endTime":"","level":"info","message":"asdsa","semester":"","startTime":"","subjectcode":"","subjectname":"","units":"","yearlevel":""}
+{"level":"info","message":"New Subject created: {\n  subjectcode: '',\n  subjectname: '',\n  units: '',\n  semester: '',\n  yearlevel: '',\n  startTime: '',\n  endTime: '',\n  _id: new ObjectId('67cc791769ae651873eba869'),\n  __v: 0\n}"}
+{"endTime":"","level":"info","message":"asdsa","semester":"2","startTime":"14:22","subjectcode":"testtt","subjectname":"testtt","units":"1","yearlevel":"2"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'testtt',\n  subjectname: 'testtt',\n  units: '1',\n  semester: '2',\n  yearlevel: '2',\n  startTime: '14:22',\n  endTime: '',\n  _id: new ObjectId('67cc794969ae651873eba86d'),\n  __v: 0\n}"}
+{"day":["Monday"],"endTime":"","faculty":"67b4327018afc9fa17812162","level":"info","message":"asdsa","semester":"1","startTime":"14:22","subjectcode":"test","subjectname":"test","units":"1","yearlevel":"1"}
+{"level":"info","message":"Error:"}
+{"day":["Monday","Tuesday"],"endTime":"14:33","faculty":"67b4327018afc9fa17812162","level":"info","message":"asdsa","semester":"2","startTime":"14:33","subjectcode":"test","subjectname":"testt","units":"2","yearlevel":"2"}
+{"level":"info","message":"Error:"}
+{"day":["Monday","Tuesday"],"endTime":"15:33","level":"info","message":"asdsa","semester":"2","startTime":"14:22","subjectcode":"testtt","subjectname":"testt","units":"2","yearlevel":"2"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'testtt',\n  subjectname: 'testt',\n  units: '2',\n  semester: '2',\n  yearlevel: '2',\n  day: [ 'Monday', 'Tuesday' ],\n  startTime: '14:22',\n  endTime: '15:33',\n  _id: new ObjectId('67cc7a2c4a1bc3e42613406f'),\n  __v: 0\n}"}
+{"day":["Monday","Tuesday"],"endTime":"15:33","faculty":"67b4327018afc9fa17812162","level":"info","message":"asdsa","semester":"3","startTime":"14:22","subjectcode":"testt","subjectname":"testtt","units":"2","yearlevel":"3"}
+{"level":"info","message":"New Subject created: {\n  subjectcode: 'testt',\n  subjectname: 'testtt',\n  units: '2',\n  semester: '3',\n  yearlevel: '3',\n  day: [ 'Monday', 'Tuesday' ],\n  startTime: '14:22',\n  endTime: '15:33',\n  faculty: new ObjectId('67b4327018afc9fa17812162'),\n  _id: new ObjectId('67cc7a524a1bc3e426134078'),\n  __v: 0\n}"}
+{"level":"info","message":"User logged in: 9999"}
+{"level":"info","message":"User logged in: 9999"}

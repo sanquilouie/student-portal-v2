@@ -10,6 +10,8 @@ import {
   import axios from 'axios';
   import { toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import Button from "../../../components/ui/button/Button";
+  import SubjectEditModal from "../../../components/edit_pages/SubjectEditModal";
 
   interface Subject {
       _id: string;
@@ -18,19 +20,45 @@ import {
       units: number;
       semester: string;
       yearlevel: string;
+      day: string[];
+      startTime: string;
+      endTime: string;
+      faculty: string;
   }
+  
   
   export default function BasicTableOne() {
     const [subjects, setSubjects] = useState<Subject[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
+    const [facultyList, setFacultyList] = useState<{ id: string; name: string }[]>([]);
     const entriesPerPage = 5;
 
+    useEffect(() => {
+      const fetchFaculty = async () => {
+        try {
+          const { data } = await axios.get("http://localhost:3001/api/getfaculty");
+          setFacultyList(data); // Assuming API returns an array of { id, name }
+        } catch (error) {
+          console.error("Error fetching faculty data:", error);
+        }
+      };
+    
+      fetchFaculty();
+    }, []);
+    
     useEffect(() => {
         axios.get("http://localhost:3001/api/getsubjects") // Fetch from backend
             .then((response) => setSubjects(response.data))
             .catch((error) => console.error("Error fetching subjects:", error));
     }, []);
 
+    const handleEdit = (subject: Subject) => {
+      setSelectedSubject(subject);
+      setIsEditModalOpen(true);
+    };
+    
      // Pagination logic
      const totalPages = Math.ceil(subjects.length / entriesPerPage);
      const startIndex = (currentPage - 1) * entriesPerPage;
@@ -130,6 +158,30 @@ import {
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                   >
+                    Day
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  >
+                    Start Time
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  >
+                    End Time
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  >
+                    Faculty
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  >
                     Actions
                   </TableCell>
                 </TableRow>
@@ -158,6 +210,23 @@ import {
                     <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                       {subject.yearlevel}
                     </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {subject.day}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {subject.startTime}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {subject.endTime}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {subject.faculty}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                    <Button size="sm" variant="outline" onClick={() => handleEdit(subject)}>
+                      Edit
+                    </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -182,6 +251,9 @@ import {
                     Next
                 </button>
             </div>
+            {isEditModalOpen && selectedSubject && (
+              <SubjectEditModal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} subject={selectedSubject} />
+            )}
       </div>
     );
   }
