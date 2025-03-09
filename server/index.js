@@ -156,11 +156,19 @@ app.get("/api/getcashier", async (req, res) => {
 app.get("/api/getsubjects", async (req, res) => {
     try {
         const subjects = await SubjectModel.find().populate("faculty", "fname lname");
-        res.json(subjects);
+        const formattedSubjects = subjects.map(subject => ({
+            ...subject.toObject(),
+            faculty: subject.faculty
+                ? { _id: subject.faculty._id, name: `${subject.faculty.fname} ${subject.faculty.lname}` }
+                : null
+        }));
+        res.json(formattedSubjects);
+
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
+
 
 app.get("/api/getprograms", async (req, res) => {
     try {

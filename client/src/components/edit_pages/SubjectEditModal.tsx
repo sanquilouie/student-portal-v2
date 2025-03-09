@@ -21,13 +21,14 @@ interface Subject {
   day: string[];  
   startTime: string;
   endTime: string;
-  faculty: string;
+  faculty: { _id: string; name: string } | null;
 }
 
 interface SubjectEditModalProps {
   isOpen: boolean;
   onClose: () => void;
   subject: Subject;
+  setSubjects: React.Dispatch<React.SetStateAction<Subject[]>>;
 }
 
   interface Faculty {
@@ -36,7 +37,7 @@ interface SubjectEditModalProps {
   }
   const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-  const SubjectEditModal: React.FC<SubjectEditModalProps> = ({ isOpen, onClose, subject }) => {
+  const SubjectEditModal: React.FC<SubjectEditModalProps> = ({ isOpen, onClose, subject, setSubjects }) => {
     const [subjectcode, setSubjectCode] = useState(subject?.subjectcode || "");
     const [subjectname, setSubjectName] = useState(subject?.subjectname || "");
     const [units, setUnits] = useState(subject?.units.toString() || "");
@@ -131,6 +132,8 @@ interface SubjectEditModalProps {
             faculty
           });
     
+          const response = await axios.get("http://localhost:3001/api/getsubjects");
+          setSubjects(response.data);
           toast.success("Subject updated successfully!");
           onClose();
         } catch (error) {
@@ -220,9 +223,7 @@ interface SubjectEditModalProps {
                             Teacher
                         </label>
                         <Select options={selectedFaculty} onChange={setFaculty} />
-                        <p className="mt-2 text-sm text-gray-500">
-                            Selected Teacher ID: {faculty}
-                        </p>
+                        
                     </div>
                 </div>
               </div>

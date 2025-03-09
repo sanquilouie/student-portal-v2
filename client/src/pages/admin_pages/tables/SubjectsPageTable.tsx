@@ -23,7 +23,7 @@ import {
       day: string[];
       startTime: string;
       endTime: string;
-      faculty: string;
+      faculty: { _id: string; name: string } | null;
   }
   
   
@@ -32,26 +32,19 @@ import {
     const [currentPage, setCurrentPage] = useState(1);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
-    const [facultyList, setFacultyList] = useState<{ id: string; name: string }[]>([]);
     const entriesPerPage = 5;
 
     useEffect(() => {
-      const fetchFaculty = async () => {
+      const fetchSubjects = async () => {
         try {
-          const { data } = await axios.get("http://localhost:3001/api/getfaculty");
-          setFacultyList(data); // Assuming API returns an array of { id, name }
+          const response = await axios.get("http://localhost:3001/api/getsubjects");
+          setSubjects(response.data);
         } catch (error) {
-          console.error("Error fetching faculty data:", error);
+          console.error("Error fetching subjects:", error);
         }
       };
     
-      fetchFaculty();
-    }, []);
-    
-    useEffect(() => {
-        axios.get("http://localhost:3001/api/getsubjects") // Fetch from backend
-            .then((response) => setSubjects(response.data))
-            .catch((error) => console.error("Error fetching subjects:", error));
+      fetchSubjects();
     }, []);
 
     const handleEdit = (subject: Subject) => {
@@ -220,7 +213,7 @@ import {
                       {subject.endTime}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                      {subject.faculty}
+                      {typeof subject.faculty === "string" ? subject.faculty : subject.faculty?.name || "No Faculty Assigned"}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                     <Button size="sm" variant="outline" onClick={() => handleEdit(subject)}>
@@ -252,7 +245,7 @@ import {
                 </button>
             </div>
             {isEditModalOpen && selectedSubject && (
-              <SubjectEditModal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} subject={selectedSubject} />
+              <SubjectEditModal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} subject={selectedSubject} setSubjects={setSubjects}/>
             )}
       </div>
     );

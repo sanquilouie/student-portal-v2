@@ -91,3 +91,5 @@
 {"level":"info","message":"New Subject created: {\n  subjectcode: 'testt',\n  subjectname: 'testtt',\n  units: '2',\n  semester: '3',\n  yearlevel: '3',\n  day: [ 'Monday', 'Tuesday' ],\n  startTime: '14:22',\n  endTime: '15:33',\n  faculty: new ObjectId('67b4327018afc9fa17812162'),\n  _id: new ObjectId('67cc7a524a1bc3e426134078'),\n  __v: 0\n}"}
 {"level":"info","message":"User logged in: 9999"}
 {"level":"info","message":"User logged in: 9999"}
+{"level":"info","message":"User logged in: 9999"}
+{"level":"info","message":"User logged in: 9999"}
